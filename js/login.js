@@ -47,6 +47,9 @@ $(document).ready(function () {
                 }
             }
         }
+        if(!match && username!="" && password!=""){
+             alert("Bad credentials. Please try again!");
+        }
         return false;
     });
 

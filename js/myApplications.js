@@ -22,18 +22,22 @@ $(document).ready(function () {
       ]).then(function (res) { 
         console.log('Result:', res);
         var length =res[0]["data"].length;
-        if (length <=0){
-            $(".events").html("<h5>You haven't any applications yet</h5><a class='card-link' href ='index.html'>View Events</a>")
-        }else{
+        var count =0;
+        if (length >0){
             for(var i=0;i<res[0]["data"].length;i++){
                 var ref = res[0]["data"][i]["ref"]["value"]["id"];
                 var record =res[0]["data"][i]["data"];
-                console.log(data);
+             
                 if(record["username"]==username){
                     var data =record["event"];
+                    count++;
                     $(".events").append(generateView(ref,data["date"],data["month"],data["year"],data["start"],data["end"],data["pic"],data["name"],data["id"],data["location"],data["description"],username,false,false,data["status"]));
                 }
             }
+            if(count<=0){
+                $(".events").html("<h5>You haven't any applications yet</h5><a class='card-link' href ='index.html'>View Events</a>")
+            }
+
         }
     })
     .catch(function (err) { console.log('Error:', err) });
