@@ -34,6 +34,7 @@ $(document).ready(function () {
         readEvents(client,q,[],username);
     }
 
+    
     //set up event list
     
 
@@ -86,7 +87,11 @@ function readEvents(client,q,user_events,username){
 }
 
 
-
-
-
+let old = document.getElementsByClassName("list");  
+$('body').on('click','.flex-row',function(){
+if(old!=null && $(old).hasClass('open'))
+$(old).toggleClass('open');
+$(this).toggleClass('open');
+old = this;
+})
 
