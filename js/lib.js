@@ -2,7 +2,7 @@
 function generateView(date, month,pic,name,id,location,description,username,found=false,appliable=true,status='Pending'){
     return`      <div class="card-container" id="event_`+id+`">
     <div class="row border">
-        <div class="col-md-6  d-flex justify-content-start ">
+        <div class="col-md-6  d-flex" style="padding-left: 0px; width: 35%">
             <div class="photo-container">
                 <div class="date">
                     <div class="day">`+date+`</div>
@@ -13,9 +13,9 @@ function generateView(date, month,pic,name,id,location,description,username,foun
     
         </div>
   
-        <div class="col-md-6">
-            <div class="info-container d-flex justify-content-between">
-                <div class ="event-content">
+        <div class="col-md-6" style="width:65%">
+            <div class="info-container d-flex justify-content-between" style="padding: 20px">
+                <div class ="event-content" style="width:70%">
                     <div class="event-name">
                          `+name+`
                     </div>
@@ -26,25 +26,21 @@ function generateView(date, month,pic,name,id,location,description,username,foun
                     `+isFound(found)+`
                     `+isStatus(appliable,status)+`
                     </div>
-                </div>
-               
-            </a>
-           
-                <a class="card-link float-right" data-bs-toggle="collapse" href="#collapseExample`+id+`"
+                </div>           
+                `+isAppliable(appliable,id,username,found)+`
+                <a class="card-link" data-bs-toggle="collapse" href="#collapseExample`+id+`"
                     aria-expanded="false" aria-controls="collapseExample`+id+`">
-                    <i class="fa fa-angle-down fa-2x" aria-hidden="true"></i>
+                    <span class="material-symbols-rounded" style="font-size:30px; line-height:2">expand_circle_down</span>
                 </a>
             </div>
         </div>
 
     </div>
-    <div class="row border">
-        <div class="collapse" id="collapseExample`+id+`">
-            <div class="card-body description">
+    <div class="row">
+        <div class="collapse border" id="collapseExample`+id+`" style="border-color: black!important" >
+            <div class="card-body description" style="padding: 10px">
                 `+description+`
             </div>
-
-           `+isAppliable(appliable,id,username,found)+`
         </div>
     </div>
 </div>`;
@@ -56,7 +52,7 @@ function isAppliable(appliable,id,username,found){
         return ``;
     }
     if(username!=null && !found){
-        return `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#terms_`+id+`">Apply</button>`;
+        return `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#terms_`+id+`" style="margin: 10px" >Apply</button>`;
     }
 
     if(!found){
