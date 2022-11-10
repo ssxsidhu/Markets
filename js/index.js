@@ -1,5 +1,6 @@
 
 $(document).ready(function () {
+  
     var faunadb = window.faunadb;
     var q = faunadb.query;
     var client = new faunadb.Client({
@@ -38,20 +39,28 @@ $(document).ready(function () {
     
 
     //on submit
+
+    
+    
+
     $(document).on('click','.btn_terms',function(){
+        
         var id = $(this).attr("id");
         id = parseInt(id.replace("btn_terms_",""));
-        var event = getEventById(id);
-        client.query(
-            q.Create(
-              q.Collection('User_Event'),
-              { data: { event: event,username:username } },
-            )
-          )
-          .then((ret) => console.log(ret));
-          //close current modal
-          $("#terms_"+id).modal("hide");
-          $("#successfulMsg").modal("show");
+        var form =$("#form"+id);
+        if($(form)[0].checkValidity() === true){
+                var event = getEventById(id);
+                client.query(
+                    q.Create(
+                    q.Collection('User_Event'),
+                    { data: { event: event,username:username } },
+                    )
+                )
+                .then((ret) => console.log(ret));
+                //close current modal
+                $("#terms_"+id).modal("hide");
+                $("#successfulMsg").modal("show");
+        }
 
     });
    
@@ -70,13 +79,14 @@ function readEvents(client,q,user_events,username){
       
         for(var i=0;i<res[0]["data"].length;i++){
             var data =res[0]["data"][i]["data"];
+            var ref = res[0]["data"][i]["ref"]["value"]["id"];
             var found = false;
              for(var j=0;j<user_events.length;j++){
                 if(data["id"]==user_events[j]["id"]){
                     found=true;
                 }
              }
-             $(".events").append(generateView(data["date"],data["month"],data["pic"],data["name"],data["id"],data["location"],data["description"],username,found));
+             $(".events").append(generateView(ref,data["date"],data["month"],data["year"],data["start"],data["end"],data["pic"],data["name"],data["id"],data["location"],data["description"],username,found));
              if(!found){
                  $(".terms").append(generateTermsModal(data["name"],data["id"],data["terms"],username));
              }

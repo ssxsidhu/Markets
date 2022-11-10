@@ -1,12 +1,15 @@
+const nameOfMonth=["","Jan", "Feb", "Mar" ,"Apr", "May", "Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
-function generateView(date, month,pic,name,id,location,description,username,found=false,appliable=true,status='Pending'){
+function generateView(ref,date, month,year,start,end,pic,name,id,location,description,username,found=false,appliable=true,status='Pending'){
+
     return`      <div class="card-container" id="event_`+id+`">
+    <input type="hidden" id ="ref_`+id+`" value ="`+ref+`">
     <div class="row border">
         <div class="col-md-6  d-flex" style="padding-left: 0px; width: 35%">
             <div class="photo-container">
                 <div class="date">
                     <div class="day">`+date+`</div>
-                    <div class="month">`+month+`</div>
+                    <div class="month">`+nameOfMonth[month]+`</div>
                 </div>
             </div>
             <img src='`+pic+`'" class="rounded-0" alt="...">
@@ -19,12 +22,19 @@ function generateView(date, month,pic,name,id,location,description,username,foun
                     <div class="event-name">
                          `+name+`
                     </div>
+                    <div class="event-date">
+                        <span class="event-year">`+year+`</span> - <span class="event-month">`+nameOfMonth[month]+`</span> - <span class="event-day">`+date+`</span>
+                    </div>
+                    <div class="event-time">
+                     <span class="event-start">`+start+`</span> - <span class="event-end">`+end+`</span>
+                    </div>
+
                     <div class="event-location">
                         `+location+`
                     </div>
                     <div>
                     `+isFound(found)+`
-                    `+isStatus(appliable,status)+`
+                    `+isStatus(appliable,status,id,year,month,date)+`
                     </div>
                 </div>           
                 `+isAppliable(appliable,id,username,found)+`
@@ -82,10 +92,24 @@ function generateMenu(username){
 </ul>`;
 }
 
-function isStatus(appliable,status){
+function isStatus(appliable,status,id,year,month,date){
     if(!appliable){
-        return `<p>Status:`+status+`</p>`;
+        if(status =="Pending" || status == "Cancel" || status =="Rejected"){
+            return `<p>Status: `+status+`</p>`;
+        }else if (status == "Approved"){
+            return `<p>Status: `+status+`</p><p><button class="btn btn-sm btn-primary btn_pay" id="pay_`+id+`">Pay Now</button></p>`;
+        }else if (status == "Accepted"){
+            const today = new Date();
+            if (today.getFullYear() <= year &&
+                today.getMonth() <= month &&
+                today.getDate() < date) {
+                    return `<p>Status: `+status+`</p><p><button class="btn btn-sm btn-primary btn_cancel_event" id="cancel_`+id+`">Cancel</button></p>`;
+              }
+
+              return `<p>Status: `+status+`</p>`;
+        }
     }
+
     return ``;
 }
 
@@ -99,11 +123,19 @@ function generateTermsModal(name ,id,terms,username){
         </div>
         <div class="modal-body">
           `+terms+`
-          
+          <form id="form`+id+`" class="needs-validation"  novalidate>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault`+id+`">
+                <label class="form-check-label" for="flexCheckDefault`+id+`">
+                    I have read the terms and condition
+                </label>
+            </div>
+           
+        </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary btn_terms" id="btn_terms_`+id+`">Submit</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btn_terms" id="btn_terms_`+id+`">Submit</button>
         </div>
       </div>
     </div>
@@ -112,15 +144,31 @@ function generateTermsModal(name ,id,terms,username){
 }
 
 function getEventById(id){
-    
-    var day =$("#event_"+id+" .day").text();
+    const monthsShort = {
+        Jan: '01',
+        Feb: '02',
+        Mar: '03',
+        Apr: '04',
+        May: '05',
+        Jun: '06',
+        Jul: '07',
+        Aug: '08',
+        Sep: '09',
+        Oct: '10',
+        Nov: '11',
+        Dec: '12',
+      };
+    var date =$("#event_"+id+" .day").text();
     var month =$("#event_"+id+" .month").text();
+    var year =$("#event_"+id+" .event-year").text();
+    var start =$("#event_"+id+" .event-start").text();
+    var end =$("#event_"+id+" .event-end").text();
     var location =$("#event_"+id+" .event-location").text();
     var description =$("#event_"+id+" .description").text();
     var name=$("#event_"+id+" .event-name").text();
     var pic = $("#event_"+id+" img").attr("src");
-    var status = "Pending";
-    return {"id":id,"day":day,"month":month,"location":location,"description":description,"pic":pic,"name":name,"status":status};
+    var status = "Approved";
+    return {"id":id,"date":date,"month":monthsShort[month],"year":year,"start":start,"end":end,"location":location,"description":description,"pic":pic,"name":name,"status":status};
 
 }
 
@@ -128,3 +176,23 @@ function logout(){
     localStorage.clear();
     window.location.reload();
 }
+
+(function () {
+    'use strict'
+  
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+  
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+  
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })();
