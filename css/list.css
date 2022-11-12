@@ -133,3 +133,7 @@ body {
 .list .card .time .month {
     font-weight: 600;
 }
+.list .card .time .year{
+    font-size: small;
+    opacity: 50%;
+}

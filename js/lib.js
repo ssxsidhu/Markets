@@ -1,50 +1,48 @@
-const nameOfMonth=["","Jan", "Feb", "Mar" ,"Apr", "May", "Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+// const nameOfMonth=["","Jan", "Feb", "Mar" ,"Apr", "May", "Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
-function generateView(ref,date, month,year,start,end,pic,name,id,location,description,username,found=false,appliable=true,status='Pending'){
+// function generateView(ref,date, month,year,start,end,pic,name,id,location,description,username,found=false,appliable=true,status='Pending'){
 
-    return`      <div class="card-container" id="event_`+id+`">
-    <input type="hidden" id ="ref_`+id+`" value ="`+ref+`">
-    <div class="row border">
-        <div class="col-md-6  d-flex" style="padding-left: 0px; width: 35%">
-            <div class="photo-container">
-                <div class="date">
-                    <div class="day">`+date+`</div>
-                    <div class="month">`+nameOfMonth[month]+`</div>
-                </div>
-            </div>
-            <img src='`+pic+`'" class="rounded-0" alt="...">
+//     return`      <div class="card-container" id="event_`+id+`">
+//     <input type="hidden" id ="ref_`+id+`" value ="`+ref+`">
+//     <div class="row border">
+//         <div class="col-md-6  d-flex" style="padding-left: 0px; width: 35%">
+//             <div class="photo-container">
+//                 <div class="date">
+//                     <div class="day">`+date+`</div>
+//                     <div class="month">`+nameOfMonth[month]+`</div>
+//                 </div>
+//             </div>
+//             <img src='`+pic+`'" class="rounded-0" alt="...">
     
 //         </div>
   
-        <div class="col-md-6" style="width:65%">
-            <div class="info-container d-flex justify-content-between" style="padding: 20px">
-                <div class ="event-content" style="width:70%">
-                    <div class="event-name">
-                         `+name+`
-                    </div>
-                    <div class="event-date">
-                        <span class="event-year">`+year+`</span> - <span class="event-month">`+nameOfMonth[month]+`</span> - <span class="event-day">`+date+`</span>
-                    </div>
-                    <div class="event-time">
-                     <span class="event-start">`+start+`</span> - <span class="event-end">`+end+`</span>
-                    </div>
-
-                    <div class="event-location">
-                        `+location+`
-                    </div>
-                    <div>
-                    `+isFound(found)+`
-                    `+isStatus(appliable,status,id,year,month,date)+`
-                    </div>
-                </div>           
-                `+isAppliable(appliable,id,username,found)+`
-                <a class="card-link" data-bs-toggle="collapse" href="#collapseExample`+id+`"
-                    aria-expanded="false" aria-controls="collapseExample`+id+`">
-                    <span class="material-symbols-rounded" style="font-size:30px; line-height:2">expand_circle_down</span>
-                </a>
-            </div>
-        </div>
-
+//         <div class="col-md-6" style="width:65%">
+//             <div class="info-container d-flex justify-content-between" style="padding: 20px">
+//                 <div class ="event-content" style="width:70%">
+//                     <div class="event-name">
+//                          `+name+`
+//                     </div>
+//                     <div class="event-date">
+//                         <span class="event-year">`+year+`</span> - <span class="event-month">`+nameOfMonth[month]+`</span> - <span class="event-day">`+date+`</span>
+//                     </div>
+//                     <div class="event-time">
+//                      <span class="event-start">`+start+`</span> - <span class="event-end">`+end+`</span>
+//                     </div>
+//                     <div class="event-location">
+//                         `+location+`
+//                     </div>
+//                     <div>
+//                     `+isFound(found)+`
+//                     `+isStatus(appliable,status,id,year,month,date)+`
+//                     </div>
+//                 </div>           
+//                 `+isAppliable(appliable,id,username,found)+`
+//                 <a class="card-link" data-bs-toggle="collapse" href="#collapseExample`+id+`"
+//                     aria-expanded="false" aria-controls="collapseExample`+id+`">
+//                     <span class="material-symbols-rounded" style="font-size:30px; line-height:2">expand_circle_down</span>
+//                 </a>
+//             </div>
+//         </div>
 //     </div>
 //     <div class="row">
 //         <div class="collapse border" id="collapseExample`+id+`" style="border-color: black!important" >
@@ -57,15 +55,16 @@ function generateView(ref,date, month,year,start,end,pic,name,id,location,descri
 
 // }
 
+
 //For handling the month names
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 //for generating list view
-function generateView(date,month,image,name,id,location,description,username,found=false,appliable=true,status='Pending'){
+function generateView(ref,date, month,year,start,end,pic,name,id,location,description,username,found=false,appliable=true,status='Pending'){
   return `
     <div class='list flex-column' id="event_`+id+`">
     <div class='card flex-row'>
-        <img src='`+image+`' class='eventPhoto'>
+        <img src='`+pic+`' class='eventPhoto'>
         <div class='flex-column info'>
           <div class='title'>`+name+`</div>
           <div class='location'>`+location+`</div>
@@ -78,6 +77,7 @@ function generateView(date,month,image,name,id,location,description,username,fou
           <div class='flex-column time'>
             <div class="day">`+date+`</div>
             <div class="month">`+monthNames[month-1]+`</div>
+            <div class="year">`+year+`</div>
           </div>
           <div class='hidden bottom'>
               `+isAppliable(appliable,id,username,found)+`
