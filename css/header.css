@@ -76,3 +76,10 @@
 .has-search .form-control {
   padding-left: 2.375rem;
 }
+
+
+.container-fluid{
+  display: flex;
+  align-items:center;
+}
+

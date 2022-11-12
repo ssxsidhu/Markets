@@ -14,7 +14,7 @@ function generateView(ref,date, month,year,start,end,pic,name,id,location,descri
             </div>
             <img src='`+pic+`'" class="rounded-0" alt="...">
     
-        </div>
+//         </div>
   
         <div class="col-md-6" style="width:65%">
             <div class="info-container d-flex justify-content-between" style="padding: 20px">
@@ -45,28 +45,60 @@ function generateView(ref,date, month,year,start,end,pic,name,id,location,descri
             </div>
         </div>
 
-    </div>
-    <div class="row">
-        <div class="collapse border" id="collapseExample`+id+`" style="border-color: black!important" >
-            <div class="card-body description" style="padding: 10px">
-                `+description+`
-            </div>
-        </div>
-    </div>
-</div>`;
+//     </div>
+//     <div class="row">
+//         <div class="collapse border" id="collapseExample`+id+`" style="border-color: black!important" >
+//             <div class="card-body description" style="padding: 10px">
+//                 `+description+`
+//             </div>
+//         </div>
+//     </div>
+// </div>`;
 
+// }
+
+//For handling the month names
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+//for generating list view
+function generateView(date,month,image,name,id,location,description,username,found=false,appliable=true,status='Pending'){
+  return `
+    <div class='list flex-column' id="event_`+id+`">
+    <div class='card flex-row'>
+        <img src='`+image+`' class='eventPhoto'>
+        <div class='flex-column info'>
+          <div class='title'>`+name+`</div>
+          <div class='location'>`+location+`</div>
+          <div>`+isFound(found)+isStatus(appliable,status)+`</div>
+          <div class='hidden bottom summary'>
+          `+description+`
+          </div>
+        </div>
+        <div class='flex-column group'>
+          <div class='flex-column time'>
+            <div class="day">`+date+`</div>
+            <div class="month">`+monthNames[month-1]+`</div>
+          </div>
+          <div class='hidden bottom'>
+              `+isAppliable(appliable,id,username,found)+`
+          </div>
+        </div>
+      </div>
+      </div>
+    `
 }
+
 
 function isAppliable(appliable,id,username,found){
     if(!appliable || found){
         return ``;
     }
     if(username!=null && !found){
-        return `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#terms_`+id+`" style="margin: 10px" >Apply</button>`;
+        return `<button class="btn btn-primary simple" data-bs-toggle="modal" data-bs-target="#terms_`+id+`">Apply</button>`;
     }
 
     if(!found){
-        return `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Apply</button>`;
+        return `<button class="btn btn-primary simple" data-bs-toggle="modal" data-bs-target="#loginModal">Apply</button>`;
     }
     
 }
@@ -195,4 +227,4 @@ function logout(){
           form.classList.add('was-validated')
         }, false)
       })
-  })();
+  })()
