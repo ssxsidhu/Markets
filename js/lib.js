@@ -48,24 +48,27 @@
 
 // }
 
+//For handling the month names
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
+//for generating list view
 function generateView(date,month,image,name,id,location,description,username,found=false,appliable=true,status='Pending'){
-    return `
+  return `
     <div class='list flex-column' id="event_`+id+`">
     <div class='card flex-row'>
-        <img src='`+image+`' class='book'>
+        <img src='`+image+`' class='eventPhoto'>
         <div class='flex-column info'>
           <div class='title'>`+name+`</div>
-          <div class='author'>`+location+`</div>
+          <div class='location'>`+location+`</div>
           <div>`+isFound(found)+isStatus(appliable,status)+`</div>
           <div class='hidden bottom summary'>
           `+description+`
           </div>
         </div>
         <div class='flex-column group'>
-          <div class='flex-column members'>
+          <div class='flex-column time'>
             <div class="day">`+date+`</div>
-            <div class="month">Nov</div>
+            <div class="month">`+monthNames[month-1]+`</div>
           </div>
           <div class='hidden bottom'>
               `+isAppliable(appliable,id,username,found)+`
@@ -75,9 +78,6 @@ function generateView(date,month,image,name,id,location,description,username,fou
       </div>
     `
 }
-
-
-
 
 
 function isAppliable(appliable,id,username,found){

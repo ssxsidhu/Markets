@@ -36,7 +36,7 @@ $(document).ready(function () {
 
     
     //set up event list
-    
+
 
     //on submit
     $(document).on('click','.btn_terms',function(){
@@ -86,8 +86,7 @@ function readEvents(client,q,user_events,username){
     .catch(function (err) { console.log('Error:', err) });
 }
 
-
-let old = document.getElementsByClassName("list");  
+let old;
 $('body').on('click','.flex-row',function(){
 if(old!=null && $(old).hasClass('open'))
 $(old).toggleClass('open');

@@ -57,7 +57,7 @@ body {
     overflow: visible;
     width: auto;
 }
-.list .card.open .book {
+.list .card.open .eventPhoto {
     transform: rotateY(50deg);
     width: fit-content;
     height: fit-content;
@@ -68,7 +68,7 @@ body {
 .list .card.open .info {
     transform: translate(0, -10px);
 }
-.list .card.open .members {
+.list .card.open .time {
     padding: 15px 20px;
     border-radius: 4px;
     align-self: flex-start;
@@ -89,7 +89,7 @@ body {
     box-shadow: 0px 15px 20px -5px rgba(0, 0, 0, .3);
     transform: translate(0, -2px);
 }
-.list .card .book {
+.list .card .eventPhoto {
     transition: all 0.5s;
     width: 120px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
@@ -107,7 +107,7 @@ body {
     color: #fff;
     letter-spacing: 1px;
 }
-.list .card .info .author {
+.list .card .info .location {
     font-size: 12px;
     font-weight: normal;
     color: #dedfe0;
@@ -116,7 +116,7 @@ body {
     margin-left: auto;
 }
 
-.list .card .members {
+.list .card .time {
     font-size: 1.5em;
     display: flex;
     justify-content: center;
@@ -127,9 +127,9 @@ body {
     color: #ccc;
     background-color: #022024;
 }
-.list .card .members .day {
+.list .card .time .day {
     font-weight: 300;
 }
-.list .card .members .month {
+.list .card .time .month {
     font-weight: 600;
 }
