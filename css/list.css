@@ -1,8 +1,4 @@
-body {
-    background-image: url("../img/background_image.jpeg");
-    background-size: 70%;
-    background-attachment: fixed;
-}
+
 .flex-row {
     display: flex;
     flex-flow: row;
@@ -11,16 +7,6 @@ body {
 .flex-column {
     display: flex;
     flex-flow: column;
-}
-.container{
-    height: 100px;
-}
-.center {
-    align-items: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 .list {
     align-items: center;
