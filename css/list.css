@@ -58,7 +58,7 @@
     width: auto;
 }
 .list .card.open .eventPhoto {
-    transform: rotateY(410deg);
+    transform: rotateY(40deg);
     width: fit-content;
     height: fit-content;
     box-shadow: -10px 10px 10px 2px rgba(0, 0, 0, 0.2), -2px 0px 0px 0px #888;
