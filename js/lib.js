@@ -60,10 +60,16 @@
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 //for generating list view
+var flag;
 function generateView(ref,date, month,year,start,end,pic,name,id,location,description,username,found=false,appliable=true,status='Pending'){
+  className='card flex-row';
+  if(id == 1 && !flag){
+    className='card flex-row open';
+    flag=true;
+  }
   return `
     <div class='list flex-column' id="event_`+id+`">
-    <div class='card flex-row'>
+    <div class='`+className+`'>
         <img src='`+pic+`' class='eventPhoto'>
         <div class='flex-column info'>
           <div class='title'>`+name+`</div>
@@ -104,7 +110,7 @@ function isAppliable(appliable,id,username,found){
 }
 function isFound(found){
     if(found){
-        return `<p class="text-success">You have applied</p>`;
+        return `<p class="success-text">You have applied</p>`;
     }
     return ``;
 }

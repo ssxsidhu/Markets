@@ -96,11 +96,10 @@ function readEvents(client,q,user_events,username){
     .catch(function (err) { console.log('Error:', err) });
 }
 
-let old;
+
 $('body').on('click','.flex-row',function(){
-if(old!=null && $(old).hasClass('open'))
-$(old).toggleClass('open');
+if($('.flex-row').hasClass('open'))
+    $('.flex-row.open').toggleClass('open');
 $(this).toggleClass('open');
-old = this;
 })
 

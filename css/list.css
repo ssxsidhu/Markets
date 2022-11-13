@@ -1,4 +1,7 @@
 
+.success-text{
+    color: peru;
+}
 .flex-row {
     display: flex;
     flex-flow: row;
@@ -20,7 +23,8 @@
     margin-bottom: 10px;
     perspective: 600px;
     transition: all 0.1s;
-    background-color: #093233;
+    /* background-color: #093233; */
+    background-color: #1c4233    ;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, .2);
     overflow: hidden;
     height: 110px;
