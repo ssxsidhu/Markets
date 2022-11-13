@@ -31,13 +31,19 @@
 }
 
 @media ( max-width:900px ) {
-    
-
     .list .card.open .eventPhoto{
         width: 200%!important;
         height: 200%!important;
         margin-left: -20px;
     }
+  }
+
+@media ( max-width:1200px ) and (min-width: 900px) {
+    .list .card.open .eventPhoto{
+        width: 70%!important;
+        height: 70%!important;
+        margin-left: -20px;
+}
   }
 .list .card .bottom {
     height: 0px;
