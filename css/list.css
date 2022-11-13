@@ -58,9 +58,10 @@
 .list .card.open .info {
     transform: translate(0, -10px);
 }
-.list .card.open .time {
+.list .card.open .date {
     padding: 15px 20px;
     border-radius: 4px;
+    margin-top: 35px;
     align-self: flex-start;
 }
 .list .card button.simple {
@@ -106,7 +107,7 @@
     margin-left: auto;
 }
 
-.list .card .time {
+.list .card .date {
     font-size: 1.5em;
     display: flex;
     justify-content: center;
@@ -117,13 +118,28 @@
     color: #ccc;
     background-color: #022024;
 }
-.list .card .time .day {
+.list .card .date .day {
     font-weight: 300;
 }
-.list .card .time .month {
+.list .card .date .month {
     font-weight: 600;
 }
-.list .card .time .year{
+.list .card .date .year{
     font-size: small;
     opacity: 50%;
 }
+.list .card .date .time{
+    position: absolute;
+    font-size: medium;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: peru;
+    color: #fff;
+    top: 10px;
+    visibility: hidden;
+}
+
+.list .card.open .date .time{
+    visibility: visible;
+}
+

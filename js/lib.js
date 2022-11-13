@@ -80,7 +80,8 @@ function generateView(ref,date, month,year,start,end,pic,name,id,location,descri
           </div>
         </div>
         <div class='flex-column group'>
-          <div class='flex-column time'>
+          <div class='flex-column date'>
+            <div class="time">8:00 AM</div>
             <div class="day">`+date+`</div>
             <div class="month">`+monthNames[month-1]+`</div>
             <div class="year">`+year+`</div>
@@ -115,19 +116,39 @@ function isFound(found){
     return ``;
 }
 function generateMenu(username){
-    return`<a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-    aria-expanded="false">
-    `+username+`
-   
-</a>
-<ul class="dropdown-menu text-small">
+    return`
+    <li id="events-text">
+    <a href="#"  >
+        <i class="fa fa-calendar fa-2x"></i>
+        <span class="events-text1">Events</span>
+    </a>
+  </li>
+    <li>
+        <a href="#">
+            <i class="fa fa-file-text fa-2x"></i>
+            <span class="my-app-text">My Applications</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+            <i class="fa fa-user fa-2x"></i>
+            <span class="profile-text">Profile</span>
+        </a>
+      </li>
+      <li onclick="logout()">
+        <a href="#" >
+            <i class="fa fa-sign-in fa-2x"></i>
+            <span class="logout-text">Log out</span>
+       </a> 
+       </li>
+<!-- <ul class="dropdown-menu text-small">
     <li><a class="dropdown-item" href="myApplications.html">My Applications</a></li>
     <li><a class="dropdown-item" href="myProfile.html">Profile</a></li>
     <li>
         <hr class="dropdown-divider">
     </li>
     <li><a class="dropdown-item" href="#" onclick="logout();">Sign out</a></li>
-</ul>`;
+</ul>-->`;
 }
 
 function isStatus(appliable,status,id,year,month,date){

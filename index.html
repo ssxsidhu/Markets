@@ -20,19 +20,38 @@
 <body>
     <!-- header-->
     <!-- <div class="container-fluid">
-            <a href="/" style="align-self: flex-start;" >Farmers' Markets</a>
-            <a href="#" class="menu">Events</a>
-            <div class="dropdown text-end menu">
-                <a href="login.html" class="d-block link-dark text-decoration-none">
-                Login</a>
-            </div>
-    </div> -->
+      <header
+          class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+          <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+              Farmer's Markets
+          </a>
+
+          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+              <li><a href="#" class="nav-link px-2 link-secondary">Events</a></li>
+          </ul>
+
+          <div class="dropdown text-end menu">
+              <a href="login.html" class="d-block link-dark text-decoration-none">
+              Login</a>
+          </div>
+      </header>
+  </div> -->
     <div class="navigation-bar">
       <div id="navigation-container">
-        <img src="img/logo2.png">
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="login.html">Login</a></li>
+        <a href="#"><img src="img/logo2.png"></a>
+        <ul class="menu">
+          <li>
+            <a href="#">
+              <i class="fa fa-calendar fa-2x"></i>
+              <span >Events</span>
+            </a>
+            </li>
+          <li>
+            <a href="login.html">
+              <i class="fa fa-sign-in fa-2x"></i>
+              <span class="login-text">Login</span>
+          </a>
+        </li>
         </ul>
       </div>
       </div>
@@ -56,11 +75,12 @@
             </div>
         </div>
     </div> -->
+    
     <div class="features-container">
       <div class="features">
         <button class="search-expand">
           <i class="fa fa-search fa-lg"></i>
-          <span class="button-text">Search</span>
+          <input type="text" class="button-text" placeholder="Search..">
         </button>
         <div class="dropdown">
         <button class="sort-expand">
@@ -72,7 +92,6 @@
         </div>
       </button>
       </div>
-      
     </div>
     </div>
 
