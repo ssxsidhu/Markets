@@ -120,17 +120,17 @@ function generateMenu(username){
     <li id="events-text">
     <a href="#"  >
         <i class="fa fa-calendar fa-2x"></i>
-        <span class="events-text1">Events</span>
+        <span class="events-text">Events</span>
     </a>
   </li>
     <li>
-        <a href="#">
+        <a href="myApplications.html">
             <i class="fa fa-file-text fa-2x"></i>
             <span class="my-app-text">My Applications</span>
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="myProfile.html">
             <i class="fa fa-user fa-2x"></i>
             <span class="profile-text">Profile</span>
         </a>
