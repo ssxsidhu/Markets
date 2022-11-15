@@ -1,0 +1,158 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#712cf9" />
+    <!-- css library-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!--icons-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link href="css/payment.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Custom styles for this template -->
+  </head>
+
+  <body style="background-color: #eee">
+    <div class="container p-0">
+      <form class="row g-3 needs-validation" novalidate id="myForm">
+        <div class="card px-4">
+          <p class="h8 py-3">Payment Details</p>
+          <div class="row gx-3">
+            <div class="col-6">
+              <div class="d-flex flex-column">
+                <label for="validationCustom01" class="form-label"
+                  >First name</label
+                >
+                <input
+                  type="text"
+                  class="form-control mb-3"
+                  id="validationCustom01"
+                  placeholder="John"
+                  required
+                />
+              </div>
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+
+            <div class="col-6">
+              <div class="d-flex flex-column">
+                <label for="validationCustom01" class="form-label"
+                  >Last name</label
+                >
+                <input
+                  type="text"
+                  class="form-control mb-3"
+                  id="validationCustom01"
+                  placeholder="Smith"
+                  required
+                />
+              </div>
+              <!-- <div class="valid-feedback">Looks good!</div> -->
+            </div>
+
+            <div class="col-12">
+              <div class="d-flex flex-column">
+                <label for="validationCustomUsername" class="form-label"
+                  >Credit Card Number</label
+                >
+                <div class="input-group has-validation">
+                  <input
+                    type="text"
+                    placeholder="1234 5678 4356 5678"
+                    class="form-control mb-3"
+                    id="validationCustomUsername"
+                    aria-describedby="inputGroupPrepend"
+                    required
+                  />
+                  <!-- <div class="invalid-feedback">
+                    Please enter credit card number.
+                  </div> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="d-flex flex-column">
+                <label for="validationCustom03" class="form-label"
+                  >Expiry</label
+                >
+                <input
+                  type="text"
+                  placeholder="MM/YYYY"
+                  class="form-control mb-3"
+                  id="validationCustom03"
+                  required
+                />
+                <!-- <div class="invalid-feedback">
+                  Please provide a valid expiration date.
+                </div> -->
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="d-flex flex-column">
+                <label for="validationCustom04" class="form-label"
+                  >CVC/CVV</label
+                >
+                <input
+                  type="password"
+                  placeholder="123"
+                  class="form-control mb-3"
+                  id="validationCustom03"
+                  required
+                />
+                <!-- <div class="invalid-feedback">Please select a valid state.</div> -->
+              </div>
+            </div>
+            <div class="col-12">
+              <button
+                class="btn btn-primary mb-3"
+                data-toggle="modal"
+                data-target="myModal"
+              >
+                Submit Payment
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <p>Payment Successful</p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary btn_pay"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/lib.js"></script>
+    <script src="js/myApplications.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/faunadb@latest/dist/faunadb.js"></script>
+    <script src="js/payment.js"></script>
+  </body>
+</html>

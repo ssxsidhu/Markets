@@ -69,12 +69,14 @@ function generateView(ref,date, month,year,start,end,pic,name,id,location,descri
   }
   return `
     <div class='list flex-column' id="event_`+id+`">
+    <input type="hidden" id ="ref_`+id+`" value ="`+ref+`">
+
     <div class='`+className+`'>
         <img src='`+pic+`' class='eventPhoto'>
         <div class='flex-column info'>
           <div class='title'>`+name+`</div>
           <div class='location'>`+location+`</div>
-          <div>`+isFound(found)+isStatus(appliable,status)+`</div>
+          <div>`+isFound(found)+isStatus(appliable,status,id,year,month,date)+`</div>
           <div class='hidden bottom summary'>
           `+description+`
           </div>
@@ -156,7 +158,7 @@ function isStatus(appliable,status,id,year,month,date){
         if(status =="Pending" || status == "Cancel" || status =="Rejected"){
             return `<p>Status: `+status+`</p>`;
         }else if (status == "Approved"){
-            return `<p>Status: `+status+`</p><p><button class="btn btn-sm btn-primary btn_pay" id="pay_`+id+`">Pay Now</button></p>`;
+            return `<p>Status: `+status+`</p><p><button class="btn btn-sm btn-primary btn_pay_now" id="pay_`+id+`">Pay Now</button></p>`;
         }else if (status == "Accepted"){
             const today = new Date();
             if (today.getFullYear() <= year &&
@@ -167,6 +169,7 @@ function isStatus(appliable,status,id,year,month,date){
 
               return `<p>Status: `+status+`</p>`;
         }
+
     }
 
     return ``;
@@ -250,7 +253,13 @@ function logout(){
             event.preventDefault()
             event.stopPropagation()
           }
-  
+          var id =$(this).attr("id");
+          if(id=="myForm"){
+            event.preventDefault();
+            $('#myModal').modal('show');
+          }
+
+    
           form.classList.add('was-validated')
         }, false)
       })
