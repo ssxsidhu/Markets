@@ -43,20 +43,29 @@ $(document).ready(function () {
     .catch(function (err) { console.log('Error:', err) });
 
     $(document).on('click','.btn_pay',function(){
-            var id =$(this).attr("id");
-            id=id.replace("pay_","ref_");
-            var ref =$("#"+id).val();
-            client .query(
-                q.Update(
-                q.Ref(q.Collection('User_Event'), ref),
-                { data: { event:{status: 'Accepted'} } },
-                )
-            ).then(function(ret) { console.log(ret)
-                window.location.reload();
-            });
+        
+        var ref=localStorage.getItem("id");
+        client .query(
+            q.Update(
+            q.Ref(q.Collection('User_Event'), ref),
+            { data: { event:{status: 'Accepted'} } },
+            )
+        ).then(function(ret) { console.log(ret)
+            location.href = "myApplications.html";
+          //  localStorage.removeItem("id");
+        });
+  
 
+        });
 
-    });
+    $(document).on('click','.btn_pay_now',function(){
+        var id =$(this).attr("id");
+        id=id.replace("pay_","ref_");
+        var ref =$("#"+id).val();
+         localStorage.setItem("id",ref);
+        location.replace("payment.html")
+});
+
 
     $(document).on('click','.btn_cancel_event',function(){
         var id =$(this).attr("id");
