@@ -1,0 +1,17 @@
+.status{
+    display: flex;
+    margin-top: 2%;
+    margin-left: 0;
+}
+
+.status .approved{
+    pointer-events: none;
+    margin-right: 5px;
+    background-color: springgreen;
+}
+
+.status .pcr{
+    pointer-events: none;
+    margin-right: 5px;
+    background-color: red;
+}

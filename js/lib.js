@@ -61,9 +61,9 @@ const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep"
 
 //for generating list view
 var flag;
-function generateView(ref,date, month,year,start,end,pic,name,id,location,description,username,found=false,appliable=true,status='Pending'){
+function generateView(ref,date,month,year,start,end,pic,name,id,location,description,username,found=false,appliable=true,status='Pending'){
   className='card flex-row';
-  if(id == 1 && !flag){
+  if(id == 1 && !flag && appliable){
     className='card flex-row open';
     flag=true;
   }
@@ -72,18 +72,18 @@ function generateView(ref,date, month,year,start,end,pic,name,id,location,descri
     <input type="hidden" id ="ref_`+id+`" value ="`+ref+`">
 
     <div class='`+className+`'>
-        <img src='`+pic+`' class='eventPhoto'>
+        <img src='`+pic+`' class='eventPhoto-no-descr'>
         <div class='flex-column info'>
           <div class='title'>`+name+`</div>
           <div class='location'>`+location+`</div>
-          <div>`+isFound(found)+isStatus(appliable,status,id,year,month,date)+`</div>
+          `+isFound(found)+isStatus(appliable,status,id,year,month,date)+`
           <div class='hidden bottom summary'>
           `+description+`
           </div>
         </div>
         <div class='flex-column group'>
           <div class='flex-column date'>
-            <div class="time">8:00 AM</div>
+            <div class="time">8:00 - 20:00</div>
             <div class="day">`+date+`</div>
             <div class="month">`+monthNames[month-1]+`</div>
             <div class="year">`+year+`</div>
@@ -96,6 +96,7 @@ function generateView(ref,date, month,year,start,end,pic,name,id,location,descri
       </div>
     `
 }
+
 
 
 function isAppliable(appliable,id,username,found){
@@ -119,55 +120,41 @@ function isFound(found){
 }
 function generateMenu(username){
     return`
-    <li id="events-text">
-    <a href="#"  >
-        <i class="fa fa-calendar fa-2x"></i>
-        <span class="events-text">Events</span>
-    </a>
-  </li>
-    <li>
+    <li id="my-app-option">
         <a href="myApplications.html">
             <i class="fa fa-file-text fa-2x"></i>
-            <span class="my-app-text">My Applications</span>
+            <span id="my-app-text">My Applications</span>
         </a>
       </li>
-      <li>
+      <li id="profile-option">
         <a href="myProfile.html">
             <i class="fa fa-user fa-2x"></i>
-            <span class="profile-text">Profile</span>
+            <span id="profile-text">Profile</span>
         </a>
       </li>
-      <li onclick="logout()">
+      <li id="logout-option" onclick="logout()">
         <a href="#" >
             <i class="fa fa-sign-in fa-2x"></i>
-            <span class="logout-text">Log out</span>
+            <span id="logout-text">Log out</span>
        </a> 
-       </li>
-<!-- <ul class="dropdown-menu text-small">
-    <li><a class="dropdown-item" href="myApplications.html">My Applications</a></li>
-    <li><a class="dropdown-item" href="myProfile.html">Profile</a></li>
-    <li>
-        <hr class="dropdown-divider">
-    </li>
-    <li><a class="dropdown-item" href="#" onclick="logout();">Sign out</a></li>
-</ul>-->`;
+       </li>`;
 }
 
 function isStatus(appliable,status,id,year,month,date){
     if(!appliable){
         if(status =="Pending" || status == "Cancel" || status =="Rejected"){
-            return `<p>Status: `+status+`</p>`;
+            return `<div class="btn status pcr">`+status+`</div>`;
         }else if (status == "Approved"){
-            return `<p>Status: `+status+`</p><p><button class="btn btn-sm btn-primary btn_pay_now" id="pay_`+id+`">Pay Now</button></p>`;
+            return `<div class="status"><div class="btn approved">`+status+`</div><button class="btn btn-sm btn-primary btn_pay_now" id="pay_`+id+`">Pay Now</button></div>`;
         }else if (status == "Accepted"){
             const today = new Date();
             if (today.getFullYear() <= year &&
                 today.getMonth() <= month &&
                 today.getDate() < date) {
-                    return `<p>Status: `+status+`</p><p><button class="btn btn-sm btn-primary btn_cancel_event" id="cancel_`+id+`">Cancel</button></p>`;
+                    return `<div class="status"><div class="btn approved">`+status+`</div><button class="btn btn-sm btn-primary btn_cancel_event" id="cancel_`+id+`">Cancel</button></div>`;
               }
 
-              return `<p>Status: `+status+`</p>`;
+              return `<div>Status: `+status+`</div>`;
         }
 
     }

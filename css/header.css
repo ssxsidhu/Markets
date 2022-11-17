@@ -89,10 +89,6 @@
 
 /* ~~ Top Navigation Bar ~~ */
 
-#navigation-container {
-  margin: 0 auto;
-  padding: 5px;
-}
 
 .navigation-bar {
   height: 96px;
@@ -113,6 +109,7 @@
 
 .navigation-bar li {
   list-style-type: none;
+  margin-top: 5px;
 }
 
 .navigation-bar li a, .navigation-bar span{
@@ -128,7 +125,7 @@
   display: block; 
 }
 
-.navigation-bar li a .my-app-text{
+.navigation-bar li a #my-app-text{
   padding: 3px ;
   margin-top: 0px;
   max-width: 85px;
@@ -228,10 +225,11 @@
 }
 
 
-.search-expand:hover{
+.search-expand:focus-within, .search-expand:hover{
   width: 200px;
   transition: width 0.7s;
 }
+
 
  
 
@@ -251,7 +249,8 @@
   outline: none;
 }
 
-.features-container .features .sort-expand:hover .button-text, .search-expand:hover .button-text{
+
+.features-container .features .sort-expand:hover .button-text,.search-expand:focus-within .button-text,.search-expand:hover .button-text{
   opacity: 1;
   transition: opacity 1.5s;
 }
@@ -291,4 +290,11 @@
   visibility: visible;
 }
 
-
+.navigation-bar .heading-text{
+  position: relative;
+  font-size: large;
+  font-weight: bolder;
+  margin: 0 auto;
+  top: 30%;
+  white-space: nowrap;
+}
