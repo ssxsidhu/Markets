@@ -31,7 +31,7 @@
 }
 
 @media ( max-width:900px ) {
-    .list .card.open .eventPhoto{
+    .list .card.open .eventPhoto,.list .card.open .eventPhoto-no-descr{
         width: 200%!important;
         height: 200%!important;
         margin-left: -20px;
@@ -39,7 +39,7 @@
   }
 
 @media ( max-width:1200px ) and (min-width: 900px) {
-    .list .card.open .eventPhoto{
+    .list .card.open .eventPhoto, .list .card.open .eventPhoto-no-descr{
         width: 70%!important;
         height: 70%!important;
         margin-left: -20px;
@@ -76,6 +76,7 @@
     transform: rotateY(30deg);
     box-shadow: -10px 10px 10px 2px rgba(0, 0, 0, 0.2), -2px 0px 0px 0px #888;
     transition: all 0.5s;
+    margin-left: -20px;
     transition-delay: 0.05s;
 }
 
