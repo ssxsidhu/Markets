@@ -1,0 +1,28 @@
+#calendar{
+    margin: 50px auto;
+    font-family: 'Rubik', sans-serif;
+    background-color:darkseagreen;
+    padding: 8%;
+    padding-top: 3%;
+    border-radius: 5%;
+}
+
+.fc-col-header-cell-cushion{
+    text-decoration: none;
+    color: rgb(3, 109, 109);
+}
+
+
+.fc .fc-daygrid-day-top {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    position: relative;
+    margin-top: 30%;
+}
+
+.fc-daygrid-day-number{
+    text-decoration: none;
+    color: aliceblue;
+}
+
