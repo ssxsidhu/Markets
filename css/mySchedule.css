@@ -1,5 +1,4 @@
 #calendar{
-    max-width: 1100px;
     margin: 50px auto;
     font-family: 'Rubik', sans-serif;
     background-color:darkseagreen;
@@ -12,8 +11,6 @@
     text-decoration: none;
     color: rgb(3, 109, 109);
 }
-
-
 
 
 .fc .fc-daygrid-day-top {

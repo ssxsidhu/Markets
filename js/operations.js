@@ -10,7 +10,7 @@ window.onload = function() {
             $('.navigation-bar').append($('<span class="heading-text" style="right:1%;">').text("My Applications"))
         }
         else if(window.location.href.includes('mySchedule.html')){
-            $('.navigation-bar').append($('<span class="heading-text" style="right:4%;">').text("My Schedule"))
+            $('.navigation-bar').append($('<span class="heading-text" style="font-size:larger;">').text("My Schedule"))
         }
         else{
             $('.navigation-bar').append($('<span class="heading-text">').text("All events"))
