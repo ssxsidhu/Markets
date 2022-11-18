@@ -25,10 +25,13 @@ $(document).ready(function () {
        
         for(var i=0;i<res[0]["data"].length;i++){
            var data =res[0]["data"][i]["data"];
+           var ref = res[0]["data"][i]["ref"]["value"]["id"];
+           data["ref"]=ref;
            all_users.push(data);
         }
     })
     .catch(function (err) { console.log('Error:', err) });
+
 
     $("form").submit(function(e){
         var match = false;
@@ -41,7 +44,14 @@ $(document).ready(function () {
                 if(user["username"]==username){
                     if(user["password"]==password){
                         match=true;
+                        
                         localStorage.setItem('username', username);
+                        localStorage.setItem('userId', user["ref"]);
+                        if(user["profile"]){
+                            localStorage.setItem('profile',true);
+                        }else{
+                            localStorage.setItem('profile',false);
+                        }
                         window.location.href="index.html";
                     }
                 }

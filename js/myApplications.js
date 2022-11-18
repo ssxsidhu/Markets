@@ -1,89 +1,142 @@
-
 $(document).ready(function () {
 
 
     var username = localStorage.getItem('username');
-    if(username!=null){
-    //set up connection
-    $(".menu").html(generateMenu(username));//set up user menu
-    var faunadb = window.faunadb
-    var q = faunadb.query
-    var client = new faunadb.Client({
-        secret: 'fnAE0WnTguAATXwpxfX-ihF-aiYRMw8FJ9I_0nxl',
-        // Adjust the endpoint if you are using Region Groups
-        endpoint: 'https://db.us.fauna.com',
-    })
-    client.query([
-        q.Map(
-            q.Paginate(q.Documents(q.Collection('User_Event'))),
-            q.Lambda(x => q.Get(x))
-          )
-      
-      ]).then(function (res) { 
-        console.log('Result:', res);
-        var length =res[0]["data"].length;
-        var count =0;
-        if (length >0){
-            for(var i=0;i<res[0]["data"].length;i++){
-                var ref = res[0]["data"][i]["ref"]["value"]["id"];
-                var record =res[0]["data"][i]["data"];
-             
-                if(record["username"]==username){
-                    var data =record["event"];
-                    count++;
-                    $(".events").append(generateView(ref,data["date"],data["month"],data["year"],data["start"],data["end"],data["pic"],data["name"],data["id"],data["location"],data["description"],username,false,false,data["status"]));
+    var profile = localStorage.getItem('profile');
+
+
+    if (username != null) {
+        //set up connection
+        $(".menu").html(generateMenu(username)); //set up user menu
+        var sort_events = [];
+        var faunadb = window.faunadb;
+        var q = faunadb.query;
+        var client = new faunadb.Client({
+            secret: 'fnAE0WnTguAATXwpxfX-ihF-aiYRMw8FJ9I_0nxl',
+            // Adjust the endpoint if you are using Region Groups
+            endpoint: 'https://db.us.fauna.com',
+        });
+        client.query([
+                q.Map(
+                    q.Paginate(q.Documents(q.Collection('User_Event'))),
+                    q.Lambda(x => q.Get(x))
+                )
+
+            ]).then(function (res) {
+                console.log('Result:', res);
+                var length = res[0]["data"].length;
+                var count = 0;
+                if (length > 0) {
+                    for (var i = 0; i < res[0]["data"].length; i++) {
+                        var ref = res[0]["data"][i]["ref"]["value"]["id"];
+                        var record = res[0]["data"][i]["data"];
+
+                        if (record["username"] == username) {
+                            var data = record["event"];
+                            var time = data["year"]+"-"+data["month"]+"-"+data["date"];
+                            var date= new Date(time);
+                            data["ref"] = ref;
+                            data["time"]=date;
+                            sort_events.push(data);
+                            console.log(sort_events);
+
+                            count++;
+                            $(".events").append(generateView(ref, data["fee"], data["date"], data["month"], data["year"], data["start"], data["end"], data["pic"], data["name"], data["id"], data["location"], data["description"], username, false, false, profile, data["status"]));
+                        }
+                    }
+
                 }
+                if (count <= 0 || length <= 0) {
+                    $(".events").html(`
+            <div class="alert alert-secondary " role="alert">
+            <div class="d-flex justify-content-center">
+            <h4 class="m-4">You haven't any applications yet</h4><a class='m-4 btn btn-success btn-sm' href ='index.html'>View Events</a></div></div>
+            `);
+                }
+            })
+            .catch(function (err) {
+                console.log('Error:', err)
+            });
+
+
+
+       $(document).on('click', '.sort', function(){
+            $(".events").html("");
+            
+            var sort = $(this).text();
+            console.log("e:"+JSON.stringify(sort_events));
+            
+            if (sort == "A-Z") {
+                sort_events.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+            } else if (sort == "Latest") {
+                sort_events.sort((a, b) => a.time - b.time);
+            } else if (sort == "Oldest") {
+                sort_events.sort((a, b) => b.time - a.time);
             }
-            if(count<=0){
-                $(".events").html("<h5>You haven't any applications yet</h5><a class='card-link' href ='index.html'>View Events</a>")
+            console.log("d:"+JSON.stringify(sort_events));
+            for (var i = 0; i < sort_events.length; i++) {
+                var data = sort_events[i];
+
+                $(".events").append(generateView(data["ref"], data["fee"], data["date"], data["month"], data["year"], data["start"], data["end"], data["pic"], data["name"], data["id"], data["location"], data["description"], username, false, false, profile, data["status"]));
             }
-
-        }
-    })
-    .catch(function (err) { console.log('Error:', err) });
-
-    $(document).on('click','.btn_pay',function(){
-        
-        var ref=localStorage.getItem("id");
-        client .query(
-            q.Update(
-            q.Ref(q.Collection('User_Event'), ref),
-            { data: { event:{status: 'Accepted'} } },
-            )
-        ).then(function(ret) { console.log(ret)
-            location.href = "myApplications.html";
-          //  localStorage.removeItem("id");
-        });
-  
-
         });
 
-    $(document).on('click','.btn_pay_now',function(){
-        var id =$(this).attr("id");
-        id=id.replace("pay_","ref_");
-        var ref =$("#"+id).val();
-         localStorage.setItem("id",ref);
-        location.replace("payment.html")
-});
+        $("#myForm").submit(function (event) {
+            var form = $("#myForm");
 
+            if ($(form)[0].checkValidity() === true) {
+                var ref = localStorage.getItem("id");
+                client.query(
+                    q.Update(
+                        q.Ref(q.Collection('User_Event'), ref), {
+                            data: {
+                                event: {
+                                    status: 'Accepted'
+                                }
+                            }
+                        },
+                    )
+                ).then(function (ret) {
+                    console.log(ret)
+                    $('#myModal').modal('show');
+                });
+            }
+        });
 
-    $(document).on('click','.btn_cancel_event',function(){
-        var id =$(this).attr("id");
-        id=id.replace("cancel_","ref_");
-        var ref =$("#"+id).val();
-        client .query(
-            q.Update(
-            q.Ref(q.Collection('User_Event'), ref),
-            { data: { event:{status: 'Cancel'} } },
-            )
-        ).then(function(ret) { console.log(ret)
-            window.location.reload();
+        $(document).on('click', '.btn_pay_now', function () {
+            var id = $(this).attr("id");
+            id = id.replace("pay_", "ref_");
+            var ref = $("#" + id).val();
+            localStorage.setItem("id", ref);
+            location.replace("payment.html")
         });
 
 
+        $(document).on('click', '.btn_cancel_event', function () {
+            var id = $(this).attr("id");
+            id = id.replace("cancel_", "ref_");
+            var ref = $("#" + id).val();
+            client.query(
+                q.Update(
+                    q.Ref(q.Collection('User_Event'), ref), {
+                        data: {
+                            event: {
+                                status: 'Cancel'
+                            }
+                        }
+                    },
+                )
+            ).then(function (ret) {
+                console.log(ret)
+                window.location.reload();
+            });
+
+
+        });
+
+    } else {
+        window.location.href = "index.html";
+    }
+
+
 });
-
-}
-
-});
-
