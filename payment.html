@@ -3,6 +3,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#712cf9" />
+    <title>Payment Details</title>
     <!-- css library-->
     <link
       rel="stylesheet"
@@ -16,9 +17,14 @@
       crossorigin="anonymous"
     />
     <link href="css/payment.css" rel="stylesheet" />
+    <link href="css/header.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap"
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -178,7 +184,8 @@
             <div class="col-4">
               <button
                 class="btn btn-primary submit mb-3"
-               type="submit"
+                data-toggle="modal"
+                data-target="myModal"
               >
                 Submit Payment
               </button>
