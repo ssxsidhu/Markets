@@ -67,15 +67,12 @@ function generateView(ref,date,month,year,start,end,pic,name,id,location,descrip
     className='card flex-row open';
     flag=true;
   }
-  imgClass="eventPhoto-no-descr"
-  if(description.length > 375){
-    imgClass="eventPhoto"
-  }
+  description="Find fresh and local vegetables, baking, preserves, meat, crafts, jewelry, and other food and artisan items at this year-round Farmers’ Market in the heart of downtown.Masks are not required to visit the market but are still encouraged.You can find the Market indoors at Cityplace from 10am to 2:30pm (333 St. Mary Ave) from October to May. You can find the Market outdoors at Manitoba Hydro Place from 10am to 2:30pm (behind 360 Portage Ave. on Graham & Edmonton) June to September."
   return `
     <div class='list flex-column' id="event_`+id+`">
     <input type="hidden" id ="ref_`+id+`" value ="`+ref+`">
     <div class='`+className+`'>
-        <img src='`+pic+`' class=`+imgClass+`>
+        <img src='`+pic+`' class="eventPhoto">
         <div class='flex-column info'>
           <div class='title'>`+name+`</div>
           <div class='location'>`+location+`</div>
@@ -157,7 +154,7 @@ function isStatus(appliable,status,id,year,month,date){
                     return `<div class="status"><div class="btn approved">`+status+`</div><button class="btn btn-sm btn-primary btn_cancel_event" id="cancel_`+id+`">Cancel</button></div>`;
               }
 
-              return `<div>Status: `+status+`</div>`;
+              return `<div class="status"><div class="btn other">`+status+`</div></div>`;
         }
 
     }
