@@ -25,8 +25,15 @@ $(document).ready(function () {
     
         if (info.event.url) {
          $(info.event.url).modal("show");
+         $(info.event.url).find('.fc-event-title').append('<div class="hr-line-solid-no-margin"></div><span style="font-size: 10px">' + info.event.description + '</span></div>');
         }
-      }
+      },
+      eventColor: '#378006',
+      eventDidMount: function(info) {
+        console.log(info.event.extendedProps);
+        // {description: "Lecture", department: "BioChemistry"}
+      },
+     
 
       
 
@@ -68,6 +75,8 @@ $(document).ready(function () {
             }
         }
     }).catch(function (err) { console.log('Error:', err) });
+    }else{
+      window.location.href="index.html";
     }
 
    
@@ -78,30 +87,32 @@ function eventCalendar(event){
         "title":event["name"].trim(),
         "start":(event["year"]+"-"+event["month"]+"-"+event["date"]+"T"+event["start"]).trim(),
         "end":(event["year"]+"-"+event["month"]+"-"+event["date"]+"T"+event["end"]).trim(),
-        "url":"#event"+event["id"]
+        "url":"#event"+event["id"],
+        "location":event["location"],
+        "description":event["description"]
     };
     return obj;
 }
 
 function generateDetailView(event){
     return `<div class="modal fade" id="event`+event["id"]+`" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="eventLabel`+event["id"]+`" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="eventLabel`+event["id"]+`">`+event["name"]+`</h5>
+          <h6 class="modal-title" id="eventLabel`+event["id"]+`">`+event["name"]+`</h6>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-                <div class="card mb-3" style="max-width: 540px;">
+                <div class="card mb-3 border-0" style="max-width: 540px;">
                 <div class="row g-0">
                 <div class="col-md-4">
                     <img src="`+event["pic"]+`" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                    <h5 class="card-title">`+event["year"]+"-"+ nameOfMonth[event["month"]]+"-"+event["date"]+`</h5>
-                    <p class="card-text"><small class="text-muted">`+"Time: "+event["start"]+" - "+event["end"]+`</small></p>
-                    <p class="card-text">`+event["location"]+`</p>
+                    <h4 class="card-title">`+event["year"]+"-"+ monthNames[event["month"]]+"-"+event["date"]+`</h4>
+                    <p class="card-text"><small class="">`+"Time: "+event["start"]+" - "+event["end"]+`</small></p>
+                    <p class="card-text"> <small class=""> Location:`+event["location"]+`</small></p>
        
                     </div>
                 </div>

@@ -28,10 +28,13 @@
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <!-- Custom styles for this template -->
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+    type='text/css'>
   </head>
 
   <body style="background-color: #eee">
+    
     <div class="container p-0">
       <form class="row g-3 needs-validation" novalidate id="myForm">
         <div class="card px-4">
@@ -104,7 +107,7 @@
                   id="validationCustom03"
                   required
                 /> -->
-                <select class="form-control" required>
+                <select class="form-control mb-3" required>
                   <option class="placeholder" value="" selected disabled>
                     Select Month
                   </option>
@@ -191,29 +194,28 @@
         </div>
       </form>
 
-      <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal" id="myModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-            <div class="modal-body">
-              <p>Payment Successful</p>
+            <div class="modal-header">
+              <span class="material-icons align-middle text-success float-left mr-4" style="font-size:50px;"> check_circle
+              </span>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary btn_pay"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
+            <div class="modal-body">
+              <div class="d-flex justify-content-between align-items-center"> 
+              <h6>You have paid successfully!</h6> <a href="myApplications.html" class="btn btn-success">View My
+                Applications</a>
+              </div>
+    
             </div>
           </div>
         </div>
       </div>
-    </div>
 
     <script src="js/lib.js"></script>
     <script src="js/myApplications.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/faunadb@latest/dist/faunadb.js"></script>
-    <script src="js/payment.js"></script>
+   
   </body>
 </html>

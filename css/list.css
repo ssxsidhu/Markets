@@ -1,16 +1,18 @@
-
-.success-text{
+.success-text {
     color: peru;
 }
+
 .flex-row {
     display: flex;
     flex-flow: row;
     align-items: center;
 }
+
 .flex-column {
-    display: flex;
+    /* display: flex; */
     flex-flow: column;
 }
+
 .list {
     align-items: center;
     border-radius: 3px;
@@ -21,39 +23,32 @@
     cursor: pointer;
     /* min-width: 700px; */
     margin-bottom: 10px;
-    perspective: 600px;
+    /* perspective: 600px; */
     transition: all 0.1s;
     /* background-color: #093233; */
-    background-color: #1c4233    ;
+    background-color: #1c4233;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, .2);
     overflow: hidden;
-    height: 110px;
+    /* height: 110px; */
 }
 
-@media ( max-width:900px ) {
-    .list .card.open .eventPhoto,.list .card.open .eventPhoto-no-descr{
+
+/* @media (max-width:900px) {
+    .list .card.open .eventPhoto {
         width: 200%!important;
         height: 200%!important;
         margin-left: -20px;
     }
-
-    .list .card{
-        height: 140px;
-    }
-
-    .list .card .eventPhoto{
-        height: 140px;
-    }
-    
-  }
-
-@media ( max-width:1200px ) and (min-width: 901px) {
-    .list .card.open .eventPhoto, .list .card.open .eventPhoto-no-descr{
-        width: 70%!important;
-        height: 70%!important;
-        margin-left: -20px;
 }
-  }
+
+@media (max-width:1200px) and (min-width: 900px) {
+    .list .card.open .eventPhoto {
+        width: 70% !important;
+        height: 70% !important;
+        margin-left: -20px;
+    }
+} */
+
 .list .card .bottom {
     height: 0px;
     overflow: hidden;
@@ -62,16 +57,19 @@
     color: #fff;
     font-weight: normal;
 }
+
 .list .card.open {
     padding: 30px;
     height: auto;
 }
+
 .list .card.open .bottom {
     margin-top: 10px;
     height: 100%;
     overflow: visible;
     width: auto;
 }
+
 .list .card.open .eventPhoto {
     transform: rotateY(40deg);
     width: fit-content;
@@ -81,15 +79,24 @@
     transition-delay: 0.05s;
 }
 
+.list .card.open .eventPhoto-no-descr {
+    transform: rotateY(30deg);
+    box-shadow: -10px 10px 10px 2px rgba(0, 0, 0, 0.2), -2px 0px 0px 0px #888;
+    transition: all 0.5s;
+    transition-delay: 0.05s;
+}
+
 .list .card.open .info {
     transform: translate(0, -10px);
 }
+
 .list .card.open .date {
     padding: 15px 20px;
     border-radius: 4px;
     margin-top: 35px;
     align-self: flex-start;
 }
+
 .list .card button.simple {
     cursor: pointer;
     color: #fff;
@@ -102,16 +109,19 @@
     font-weight: bold;
     transition: all 0.1s;
 }
+
 .list .card button.simple:hover {
     box-shadow: 0px 15px 20px -5px rgba(0, 0, 0, .3);
     transform: translate(0, -2px);
 }
+
 .list .card .eventPhoto {
     transition: all 0.5s;
     width: 120px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
     overflow: hidden;
 }
+
 .list .card .info {
     transition: all 0.2s;
     min-width: 200px;
@@ -119,16 +129,19 @@
     font-family: 'Rubik', sans-serif;
     font-weight: bold;
 }
+
 .list .card .info .title {
     font-size: 1em;
     color: #fff;
     letter-spacing: 1px;
 }
+
 .list .card .info .location {
     font-size: 12px;
     font-weight: normal;
     color: #dedfe0;
 }
+
 .list .card .group {
     margin-left: auto;
 }
@@ -144,17 +157,21 @@
     color: #ccc;
     background-color: #022024;
 }
+
 .list .card .date .day {
     font-weight: 300;
 }
+
 .list .card .date .month {
     font-weight: 600;
 }
-.list .card .date .year{
+
+.list .card .date .year {
     font-size: small;
     opacity: 50%;
 }
-.list .card .date .time{
+
+.list .card .date .time {
     position: absolute;
     font-size: medium;
     padding: 10px;
@@ -165,7 +182,10 @@
     visibility: hidden;
 }
 
-.list .card.open .date .time{
+.list .card.open .date .time {
     visibility: visible;
 }
 
+.hightlight {
+    border: 1px solid #1c4233;
+}
