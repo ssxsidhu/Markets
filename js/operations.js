@@ -13,6 +13,6 @@ window.onload = function() {
             $('.navigation-bar').append($('<span class="heading-text" style="font-size:larger;">').text("My Schedule"))
         }
         else{
-            $('.navigation-bar').append($('<span class="heading-text">').text("All events"))
+            $('.navigation-bar').append($('<span class="heading-text">').text("All Events"))
         }
     }

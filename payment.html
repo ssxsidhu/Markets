@@ -3,6 +3,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#712cf9" />
+    <title>Payment Details</title>
     <!-- css library-->
     <link
       rel="stylesheet"
@@ -16,9 +17,14 @@
       crossorigin="anonymous"
     />
     <link href="css/payment.css" rel="stylesheet" />
+    <link href="css/header.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap"
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -34,7 +40,7 @@
             <div class="col-6">
               <div class="d-flex flex-column">
                 <label for="validationCustom01" class="form-label"
-                  >First name</label
+                  >First Name</label
                 >
                 <input
                   type="text"
@@ -50,7 +56,7 @@
             <div class="col-6">
               <div class="d-flex flex-column">
                 <label for="validationCustom01" class="form-label"
-                  >Last name</label
+                  >Last Name</label
                 >
                 <input
                   type="text"
@@ -68,6 +74,7 @@
                 <label for="validationCustomUsername" class="form-label"
                   >Credit Card Number</label
                 >
+
                 <div class="input-group has-validation">
                   <input
                     type="text"
@@ -75,6 +82,7 @@
                     class="form-control mb-3"
                     id="validationCustomUsername"
                     aria-describedby="inputGroupPrepend"
+                    onkeypress="return isNumberKey(event)"
                     required
                   />
                   <!-- <div class="invalid-feedback">
@@ -84,18 +92,61 @@
               </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-3">
               <div class="d-flex flex-column">
                 <label for="validationCustom03" class="form-label"
-                  >Expiry</label
+                  >Expiration Date</label
                 >
-                <input
+                <!-- <input
                   type="text"
                   placeholder="MM/YYYY"
                   class="form-control mb-3"
                   id="validationCustom03"
                   required
-                />
+                /> -->
+                <select class="form-control" required>
+                  <option class="placeholder" value="" selected disabled>
+                    Select Month
+                  </option>
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+                <!-- <div class="invalid-feedback">
+                  Please provide a valid expiration date.
+                </div> -->
+              </div>
+            </div>
+
+            <div class="col-3" style="padding-top: 33px; position: static">
+              <div class="d-flex flex-column">
+                <!-- <label for="validationCustom03" class="form-label">Year</label> -->
+                <!-- <input
+                  type="text"
+                  placeholder="MM/YYYY"
+                  class="form-control mb-3"
+                  id="validationCustom03"
+                  required
+                /> -->
+                <select class="form-control" required>
+                  <option value="" selected disabled>Select Year</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
+                  <option value="2026">2026</option>
+                  <option value="2027">2027</option>
+                  <option value="2028">2028</option>
+                </select>
                 <!-- <div class="invalid-feedback">
                   Please provide a valid expiration date.
                 </div> -->
@@ -112,14 +163,24 @@
                   placeholder="123"
                   class="form-control mb-3"
                   id="validationCustom03"
+                  onkeypress="return isNumberKey(event)"
                   required
                 />
                 <!-- <div class="invalid-feedback">Please select a valid state.</div> -->
               </div>
             </div>
-            <div class="col-12">
+            <div class="col-4">
               <button
-                class="btn btn-primary mb-3"
+                class="btn btn-primary cancel mb-3"
+                onclick="location.href='myApplications.html';"
+              >
+                Cancel
+              </button>
+            </div>
+            <div class="col-4"></div>
+            <div class="col-4">
+              <button
+                class="btn btn-primary submit mb-3"
                 data-toggle="modal"
                 data-target="myModal"
               >

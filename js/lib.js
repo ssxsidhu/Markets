@@ -74,7 +74,6 @@ function generateView(ref,date,month,year,start,end,pic,name,id,location,descrip
   return `
     <div class='list flex-column' id="event_`+id+`">
     <input type="hidden" id ="ref_`+id+`" value ="`+ref+`">
-
     <div class='`+className+`'>
         <img src='`+pic+`' class=`+imgClass+`>
         <div class='flex-column info'>
@@ -243,14 +242,18 @@ function logout(){
           if (!form.checkValidity()) {
             event.preventDefault()
             event.stopPropagation()
+            $('#myModal').modal('hide');
+
+          }else{
+            $('#myModal').modal('show');
+
           }
           var id =$(this).attr("id");
           if(id=="myForm"){
             event.preventDefault();
-            $('#myModal').modal('show');
+           
           }
 
-    
           form.classList.add('was-validated')
         }, false)
       })
