@@ -55,7 +55,7 @@ $(document).ready(function () {
       $(".events").prepend(`
         <div class="alert alert-success searchResult" role="alert">
           <div class="d-flex justify-content-center">
-              <h4 class="m-4">Search: ` + value + ` ` + count + display + `</h4>
+              <h4 class="m-4">Search: '` + value + `' ` + count + display + `</h4>
               <button class="m-4 btn btn-success btn-sm" onclick="window.location.reload();">Clear Search</button>
             </div>
         </div>`);
@@ -159,33 +159,33 @@ function isFound(found) {
 
 function generateMenu(username) {
   return `
-    <li id="events-option">
-    <a href="index.html"  >
+    <li>
+    <a href="index.html" id="events-option" >
         <i class="fa fa-list fa-2x"></i>
         <span id="events-text">All Events</span>
     </a>
   </li>
 
-    <li id="my-schedule-option">
-        <a href="mySchedule.html">
+    <li>
+        <a href="mySchedule.html" id="my-schedule-option">
           <i class="fa fa-calendar fa-2x"></i>
           <span id="my-schedule-text">My Schedule</span>
       </a>
     </li>
-    <li id="my-app-option">
-        <a href="myApplications.html">
+    <li>
+        <a href="myApplications.html" id="my-app-option">
             <i class="fa fa-file-text fa-2x"></i>
             <span id="my-app-text">My Applications</span>
         </a>
       </li>
-      <li id="profile-option">
-        <a href="myProfile.html">
+      <li>
+        <a href="myProfile.html" id="my-profile-option">
             <i class="fa fa-user fa-2x"></i>
-            <span id="profile-text">My Profile</span>
+            <span id="my-profile-text">My Profile</span>
         </a>
       </li>
-      <li id="logout-option" onclick="logout()">
-        <a href="#" >
+      <li onclick="logout()">
+        <a href="index.html" id="logout-option">
             <i class="fa fa-sign-in fa-2x"></i>
             <span id="logout-text">Log out</span>
        </a> 

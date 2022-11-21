@@ -69,3 +69,10 @@ $(document).ready(function () {
 
    
 });
+
+$(document).ready(function() {
+    if(window.location.href.includes('myProfile.html')){
+        document.getElementById('my-profile-option').style.color="darkcyan"
+        document.getElementById('my-profile-text').style.color="darkcyan"
+    }
+})

@@ -23,7 +23,6 @@ $(document).ready(function () {
                 )
 
             ]).then(function (res) {
-                console.log('Result:', res);
                 var length = res[0]["data"].length;
                 var count = 0;
                 if (length > 0) {
@@ -121,7 +120,7 @@ $(document).ready(function () {
                     q.Ref(q.Collection('User_Event'), ref), {
                         data: {
                             event: {
-                                status: 'Cancel'
+                                status: 'Cancelled'
                             }
                         }
                     },
