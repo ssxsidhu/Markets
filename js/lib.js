@@ -76,7 +76,6 @@ const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep
 var flag;
 
 function generateView(ref, fee, date, month, year, start, end, pic, name, id, location, description, username, found = false, appliable = true, profile = 'false', status = '') {
-  console.log("view " + profile);
   className = 'card flex-row';
   if (id == 1 && !flag && appliable) {
     className = 'card flex-row open';
@@ -194,7 +193,7 @@ function generateMenu(username) {
 
 function isStatus(appliable,status) {
   if (!appliable) {
-      return `<p class="success-text">` + status + `</p>`;
+      return `<div class="status"><div class="dot `+status+`-dot"></div><div class="success-text `+status+`-text">` + status + `</div></div>`;
   }
 
   return ``;

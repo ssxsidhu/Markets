@@ -2,6 +2,7 @@
     display: flex;
     margin-top: 2%;
     margin-left: 0;
+    align-items: center;
 }
 
 .status .approved{
@@ -15,3 +16,35 @@
     margin-right: 5px;
     background-color: red;
 }
+
+.dot{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.dot.Cancelled-dot{
+    background:red;
+  }
+
+
+/* .Cancelled-text{
+    color: red;
+} */
+
+.dot.Approved-dot{
+    background: peru;
+}
+
+.dot.Accepted-dot{
+    background: springgreen;
+}
+
+/* .Accepted-text{
+    color: springgreen;
+} */
+
+/* .success-text{
+    color: white;
+} */

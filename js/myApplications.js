@@ -58,21 +58,39 @@ $(document).ready(function () {
             });
 
 
-
+        var selected;
+        var unselected=[];
        $(document).on('click', '.sort', function(){
             $(".events").html("");
             
             var sort = $(this).text();
-            console.log("e:"+JSON.stringify(sort_events));
-            
+            selected=sort;
             if (sort == "A-Z") {
                 sort_events.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+                unselected[0]='Latest';
+                unselected[1]='Oldest';
             } else if (sort == "Latest") {
                 sort_events.sort((a, b) => a.time - b.time);
+                unselected[0]='A-Z';
+                unselected[1]='Oldest';
             } else if (sort == "Oldest") {
                 sort_events.sort((a, b) => b.time - a.time);
+                unselected[0]='A-Z';
+                unselected[1]='Latest';
             }
-            console.log("d:"+JSON.stringify(sort_events));
+
+            document.getElementById('sort-'+selected).style.backgroundColor='seagreen';
+            document.getElementById('sort-'+unselected[0]).style.backgroundColor='#aaa';
+            document.getElementById('sort-'+unselected[0]).style=""
+            document.getElementById('sort-'+unselected[1]).style.backgroundColor='#aaa';
+            document.getElementById('sort-'+unselected[1]).style=""
+    
+            //to style the sort box.
+            var styleElem = document.head.appendChild(document.createElement("style"));
+            styleElem.innerHTML = ".dropdown .sort-expand::after {background: seagreen;}";
+    
+            $(".sort-button-text").text("Sorted by");
+    
             for (var i = 0; i < sort_events.length; i++) {
                 var data = sort_events[i];
 

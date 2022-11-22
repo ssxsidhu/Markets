@@ -37,16 +37,38 @@ $(document).ready(function () {
     }else{
         readEvents(client,q,[],username,profile,sort_events);
     }
+
+    var selected;
+    var unselected=[];
     $(".sort").click(function(){
         $(".events").html("");
         var sort = $(this).text();
+        selected=sort;
         if(sort=="A-Z"){
             sort_events.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)); 
+            unselected[0]='Latest';
+            unselected[1]='Oldest';
         }else if (sort=="Latest"){
             sort_events.sort((a,b) => a.time - b.time); 
+            unselected[0]='A-Z';
+            unselected[1]='Oldest';
         }else if(sort == "Oldest"){
             sort_events.sort((a,b) => b.time - a.time); 
+            unselected[0]='A-Z';
+            unselected[1]='Latest';
         }
+        document.getElementById('sort-'+selected).style.backgroundColor='seagreen';
+        document.getElementById('sort-'+unselected[0]).style.backgroundColor='#aaa';
+        document.getElementById('sort-'+unselected[0]).style=""
+        document.getElementById('sort-'+unselected[1]).style.backgroundColor='#aaa';
+        document.getElementById('sort-'+unselected[1]).style=""
+
+        //to style the sort box.
+        var styleElem = document.head.appendChild(document.createElement("style"));
+        styleElem.innerHTML = ".dropdown .sort-expand::after {background: seagreen;}";
+
+        $(".sort-button-text").text("Sorted by");
+
         for(var  i=0;i<sort_events.length;i++){
             var data=sort_events[i];
             var found =false;
@@ -103,9 +125,7 @@ function readEvents(client,q,user_events,username,profile,sort_events){
             q.Lambda(x => q.Get(x))
           )
       
-      ]).then(function (res) { 
-        console.log('Result:', res);
-      
+      ]).then(function (res) {       
         for(var i=0;i<res[0]["data"].length;i++){
             var data =res[0]["data"][i]["data"];
             var ref = res[0]["data"][i]["ref"]["value"]["id"];
