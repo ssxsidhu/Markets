@@ -34,11 +34,13 @@
   </head>
 
   <body style="background-color: #eee">
-    
     <div class="container p-0">
+
       <form class="row g-3 needs-validation" novalidate id="myForm">
         <div class="card px-4">
-          <p class="h8 py-3">Payment Details</p>
+            <p class="h8 py-3"><a href="index.html"><img src="img/logo2.png" style="width:220px;height:100px;"></a></p>
+          <p class="h8 py-3">Payment Details </p>
+       
           <div class="row gx-3">
             <div class="col-6">
               <div class="d-flex flex-column">
@@ -83,6 +85,7 @@
                     type="text"
                     placeholder="1234 5678 4356 5678"
                     class="form-control mb-3"
+                    maxlength="20"
                     id="validationCustomUsername"
                     aria-describedby="inputGroupPrepend"
                     onkeypress="return isNumberKey(event)"
@@ -164,6 +167,7 @@
                 <input
                   type="password"
                   placeholder="123"
+                  maxlength="3"
                   class="form-control mb-3"
                   id="validationCustom03"
                   onkeypress="return isNumberKey(event)"
@@ -204,7 +208,7 @@
             </div>
             <div class="modal-body">
               <div class="d-flex justify-content-between align-items-center"> 
-              <h6>You have paid successfully!</h6> <a href="myApplications.html" class="btn btn-success">View My
+              <h5 class="h5" style="font-weight:bold;">You have paid successfully!</h5> <a href="myApplications.html" class="btn btn-success">View My
                 Applications</a>
               </div>
     
@@ -213,6 +217,7 @@
         </div>
       </div>
 
+    <script src="js/payment.js"></script>
     <script src="js/lib.js"></script>
     <script src="js/myApplications.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/faunadb@latest/dist/faunadb.js"></script>

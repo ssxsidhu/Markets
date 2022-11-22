@@ -16,8 +16,3 @@
     background-color: red;
 }
 
-.status .other{
-    pointer-events: none;
-    margin-right: 5px;
-    background-color:darkseagreen;
-}

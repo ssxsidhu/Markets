@@ -110,7 +110,7 @@ function generateDetailView(event){
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                    <h4 class="card-title">`+event["year"]+"-"+ monthNames[event["month"]]+"-"+event["date"]+`</h4>
+                    <h4 class="card-title">`+event["year"]+"-"+ monthNames[event["month"]-1]+"-"+event["date"]+`</h4>
                     <p class="card-text"><small class="">`+"Time: "+event["start"]+" - "+event["end"]+`</small></p>
                     <p class="card-text"> <small class=""> Location:`+event["location"]+`</small></p>
        

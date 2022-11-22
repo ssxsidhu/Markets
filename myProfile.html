@@ -30,46 +30,64 @@
 
   <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
-      <div class="col-md-3 border-right">
+      <div class="col-md-4 border-right">
         <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
             width="150px"
             src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span
             class="text-black-50" id="username"></span><span> </span></div>
       </div>
-      <div class="col-md-5 border-right">
+      <div class="col-md-8 border-right">
         <div class="p-3 py-5">
           <form id="profileForm" class="needs-validation row g-3" novalidate>
             <div class="d-flex justify-content-between align-items-center mb-3">
               <h4 class="text-right">My Profile</h4>
             </div>
             <div class="col-12">
-              <label for="inputAddress2" class="form-label">Owner Name</label>
+              <label for="inputAddress2" class="form-label">Owner Name <span class="required">*</span></label>
               <input type="text" class="form-control" name="ownerName" id="ownerName" required>
+              <div class="invalid-feedback">
+                Please a name
+             </div>
             </div>
             <div class="col-12">
-              <label for="inputAddress2" class="form-label">Business Name</label>
+              <label for="inputAddress2" class="form-label">Business Name<span class="required">*</span></label>
               <input type="text" class="form-control" id="businessName" name="businessName" required>
+              <div class="invalid-feedback">
+                Please a business name
+             </div>
             </div>
             <div class="col-12">
-              <label for="inputAddress2" class="form-label">Phone</label>
+              <label for="inputAddress2" class="form-label">Phone<span class="required">*</span></label>
               <input type="number" class="form-control" id="phone" name="phone" required>
+              <div class="invalid-feedback">
+                Please a phone number
+             </div>
             </div>
             <div class="col-12">
-              <label for="inputAddress2" class="form-label">Email</label>
+              <label for="inputAddress2" class="form-label">Business Email<span class="required">*</span></label>
               <input type="email" class="form-control" id="email" name="email" required>
+              <div class="invalid-feedback">
+                Please a business email
+             </div>
             </div>
             <div class="col-12">
-              <label for="inputAddress2" class="form-label">Deailed list of production sold.(Baker: bread,cookies, cake,
-                etc. Farmer: carrots, potatos, etc.)</label>
+              <label for="inputAddress2" class="form-label">Detailed list of production sold.(Baker: bread,cookies, cake,
+                etc. Farmer: carrots, potatos, etc.)<span class="required">*</span></label>
               <textarea class="form-control" required name="production" id="production"></textarea>
+              <div class="invalid-feedback">
+                Please provide the detailed list of production sold
+             </div>
             </div>
             <div class="col-12">
               <label for="inputAddress2" class="form-label">Bussiness Description. Please write a brief summary
                 describing your business and the producta or services offered.
                 Please mention such things as how your products differ from your competitiors or how "green" your
-                business is
+                business is<span class="required">*</span>
               </label>
               <textarea class="form-control" required name="description" id="description"></textarea>
+              <div class="invalid-feedback">
+                Please provide the description
+             </div>
             </div>
 
 

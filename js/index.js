@@ -1,6 +1,8 @@
 
 $(document).ready(function () {
-  
+   
+    $('.loader').show(0);
+ 
     var faunadb = window.faunadb;
     var q = faunadb.query;
     var client = new faunadb.Client({
@@ -33,9 +35,11 @@ $(document).ready(function () {
                 }
              }
              readEvents(client,q,user_events,username,profile,sort_events);
+             $('.loader').hide();
         });
     }else{
         readEvents(client,q,[],username,profile,sort_events);
+        $('.loader').hide();
     }
     $(".sort").click(function(){
         $(".events").html("");
@@ -58,7 +62,8 @@ $(document).ready(function () {
              $(".events").append(generateView(data["ref"],data["fee"],data["date"],data["month"],data["year"],data["start"],data["end"],data["pic"],data["name"],data["id"],data["location"],data["description"],username,found,true,profile,''));
         }});
 
-    
+
+       
     
 
     $(document).on('click','.btn_terms',function(){
@@ -66,7 +71,7 @@ $(document).ready(function () {
         var id = $(this).attr("id");
         id = parseInt(id.replace("btn_terms_",""));
         var form =$("#form"+id);
-     
+ 
         if($(form)[0].checkValidity() === true){
                 var event = getEventById(id);
                 client.query(
@@ -79,14 +84,18 @@ $(document).ready(function () {
                 //close current modal
                 $("#terms_"+id).modal("hide");
                 $("#successfulMsg").modal("show");
+              
         }else{
-            alert("Please confirm that your have read the terms");
+            $("#terms_"+id+" .form-check-label").addClass("hasError");
         }
 
     });
    
 
 });
+
+
+
 
 
 

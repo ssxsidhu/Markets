@@ -23,7 +23,6 @@ $(document).ready(function () {
                 )
 
             ]).then(function (res) {
-                console.log('Result:', res);
                 var length = res[0]["data"].length;
                 var count = 0;
                 if (length > 0) {
@@ -111,17 +110,27 @@ $(document).ready(function () {
             location.replace("payment.html")
         });
 
+        
+        $(document).on('click', '.btn_cancel', function () {
+            var id = $(this).attr("id");
+            var modal = id.replace("cancel_","event_");
+            id = id.replace("cancel_","cancel_event_");
+            
+            $("#cancelModal .btn_cancel_event").attr("id",id);
+            $("#event-cancel").text($("#"+modal+" .title").html());
+        });
+
 
         $(document).on('click', '.btn_cancel_event', function () {
             var id = $(this).attr("id");
-            id = id.replace("cancel_", "ref_");
+            id = id.replace("cancel_event_", "ref_");
             var ref = $("#" + id).val();
             client.query(
                 q.Update(
                     q.Ref(q.Collection('User_Event'), ref), {
                         data: {
                             event: {
-                                status: 'Cancel'
+                                status: 'Cancelled'
                             }
                         }
                     },

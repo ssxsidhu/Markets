@@ -55,7 +55,7 @@ $(document).ready(function () {
       $(".events").prepend(`
         <div class="alert alert-success searchResult" role="alert">
           <div class="d-flex justify-content-center">
-              <h4 class="m-4">Search: ` + value + ` ` + count + display + `</h4>
+              <h4 class="m-4">Search: '` + value + `' ` + count + display + `</h4>
               <button class="m-4 btn btn-success btn-sm" onclick="window.location.reload();">Clear Search</button>
             </div>
         </div>`);
@@ -82,17 +82,12 @@ function generateView(ref, fee, date, month, year, start, end, pic, name, id, lo
     className = 'card flex-row open';
     flag = true;
   }
-  description="Find fresh and local vegetables, baking, preserves, meat, crafts, jewelry, and other food and artisan items at this year-round Farmers’ Market in the heart of downtown.Masks are not required to visit the market but are still encouraged.You can find the Market indoors at Cityplace from 10am to 2:30pm (333 St. Mary Ave) from October to May. You can find the Market outdoors at Manitoba Hydro Place from 10am to 2:30pm (behind 360 Portage Ave. on Graham & Edmonton) June to September."
   return `
     <div class='list flex-column event' id="event_` + id + `">
     <input type="hidden" id ="ref_` + id + `" value ="` + ref + `">
 
     <div class='` + className + `'>
         <img src='` + pic + `' class='eventPhoto-no-descr'>
-//     <div class='list flex-column' id="event_`+id+`">
-//     <input type="hidden" id ="ref_`+id+`" value ="`+ref+`">
-//     <div class='`+className+`'>
-//         <img src='`+pic+`' class="eventPhoto">
         <div class='flex-column info'>
           <div class='title'>` + name + `</div>
           <div class='location'>` + location + `</div>
@@ -149,7 +144,7 @@ function isStatusBtn(status,id, year, month, date) {
       if (today.getFullYear() <= year &&
         today.getMonth() <= month &&
         today.getDate() < date) {
-           html= `<button class="btn btn-primary simple btn_cancel_event" id="cancel_` + id + `" >Cancel</button>`;
+           html= `<button class="btn btn-primary simple btn_cancel" data-bs-toggle="modal" data-bs-target="#cancelModal" id="cancel_` + id + `" >Cancel</button>`;
       }
   }
   return html;
@@ -164,33 +159,33 @@ function isFound(found) {
 
 function generateMenu(username) {
   return `
-    <li id="events-option">
-    <a href="index.html"  >
+    <li>
+    <a href="index.html" id="events-option" >
         <i class="fa fa-list fa-2x"></i>
         <span id="events-text">All Events</span>
     </a>
   </li>
 
-    <li id="my-schedule-option">
-        <a href="mySchedule.html">
+    <li>
+        <a href="mySchedule.html" id="my-schedule-option">
           <i class="fa fa-calendar fa-2x"></i>
           <span id="my-schedule-text">My Schedule</span>
       </a>
     </li>
-    <li id="my-app-option">
-        <a href="myApplications.html">
+    <li>
+        <a href="myApplications.html" id="my-app-option">
             <i class="fa fa-file-text fa-2x"></i>
             <span id="my-app-text">My Applications</span>
         </a>
       </li>
-      <li id="profile-option">
-        <a href="myProfile.html">
+      <li>
+        <a href="myProfile.html" id="my-profile-option">
             <i class="fa fa-user fa-2x"></i>
-            <span id="profile-text">My Profile</span>
+            <span id="my-profile-text">My Profile</span>
         </a>
       </li>
-      <li id="logout-option" onclick="logout()">
-        <a href="#" >
+      <li onclick="logout()">
+        <a href="index.html" id="logout-option">
             <i class="fa fa-sign-in fa-2x"></i>
             <span id="logout-text">Log out</span>
        </a> 
@@ -201,30 +196,12 @@ function isStatus(appliable,status) {
   if (!appliable) {
       return `<p class="success-text">` + status + `</p>`;
   }
-// function isStatus(appliable,status,id,year,month,date){
-//     if(!appliable){
-//         if(status =="Pending" || status == "Cancel" || status =="Rejected"){
-//             return `<div class="btn status pcr">`+status+`</div>`;
-//         }else if (status == "Approved"){
-//             return `<div class="status"><div class="btn approved">`+status+`</div><button class="btn btn-sm btn-primary btn_pay_now" id="pay_`+id+`">Pay Now</button></div>`;
-//         }else if (status == "Accepted"){
-//             const today = new Date();
-//             if (today.getFullYear() <= year &&
-//                 today.getMonth() <= month &&
-//                 today.getDate() < date) {
-//                     return `<div class="status"><div class="btn approved">`+status+`</div><button class="btn btn-sm btn-primary btn_cancel_event" id="cancel_`+id+`">Cancel</button></div>`;
-//               }
-
-//               return `<div class="status"><div class="btn other">`+status+`</div></div>`;
-//         }
-
-//     }
 
   return ``;
 }
 
 function generateTermsModal(name, id, terms, username) {
-  return `<div class="modal fade" id="terms_` + id + `" tabindex="-1" aria-labelledby="terms_Label` + id + `" aria-hidden="true">
+  return `<div class="modal fade termsModal" id="terms_` + id + `" tabindex="-1" aria-labelledby="terms_Label` + id + `" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -249,7 +226,14 @@ function generateTermsModal(name, id, terms, username) {
         </div>
       </div>
     </div>
-  </div>`;
+  </div>
+  <script>
+  document.getElementById('terms_`+id+`').addEventListener('hidden.bs.modal', function () {
+    $("#terms_`+id+` .form-check-label").removeClass("hasError");
+});
+  </script>
+  
+  `;
 
 }
 
@@ -319,37 +303,14 @@ function logout() {
           if (id == "myForm") {
             event.preventDefault();
             event.stopPropagation();
-//     'use strict'
-  
-//     // Fetch all the forms we want to apply custom Bootstrap validation styles to
-//     var forms = document.querySelectorAll('.needs-validation')
-  
-//     // Loop over them and prevent submission
-//     Array.prototype.slice.call(forms)
-//       .forEach(function (form) {
-//         form.addEventListener('submit', function (event) {
-//           if (!form.checkValidity()) {
-//             event.preventDefault()
-//             event.stopPropagation()
-//             $('#myModal').modal('hide');
-
-//           }else{
-//             $('#myModal').modal('show');
-
-//           }
-//           var id =$(this).attr("id");
-//           if(id=="myForm"){
-//             event.preventDefault();
           }
           
         }
       
-       
+        
+
+
         form.classList.add('was-validated')
       }, false)
     })
 })()
-//           form.classList.add('was-validated')
-//         }, false)
-//       })
-//   })()

@@ -61,6 +61,12 @@ $(document).ready(function () {
               $(".container").prepend(`<div class="alert alert-success" role="alert">
                 You have save the profile successfully.
             </div>`);
+            }).catch(function (err) { 
+                console.log('Error:', err);
+                $(".alert").remove();
+                $(".container").prepend(`<div class="alert alert-danger" role="alert">
+                  Something went wrong... Please try again!
+              </div>`);
             });
         }
    
@@ -69,3 +75,10 @@ $(document).ready(function () {
 
    
 });
+
+$(document).ready(function() {
+    if(window.location.href.includes('myProfile.html')){
+        document.getElementById('my-profile-option').style.color="darkcyan"
+        document.getElementById('my-profile-text').style.color="darkcyan"
+    }
+})
