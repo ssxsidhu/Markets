@@ -46,17 +46,27 @@ $(document).ready(function () {
                 )
             ).then(function(ret) { console.log(ret)
                 $(".alert").remove();
-              $(".container").prepend(`<div class="alert alert-success" role="alert">
-                You have save the profile successfully.
+              $(".container").append(`<div class="alert alert-success" role="alert">
+              <div class="d-flex justify-content-center">
+               <p class="m-2"> You have save the profile successfully.</p> <a href="index.html" class="btn btn-sm btn-success m-2">Apply for events</a>
+                </div>
             </div>`);
+           
+            
             }).catch(function (err) { 
                 console.log('Error:', err);
                 $(".alert").remove();
-                $(".container").prepend(`<div class="alert alert-danger" role="alert">
+                $(".container").append(`<div class="alert alert-danger" role="alert">
+                <div class="d-flex justify-content-center">
                   Something went wrong... Please try again!
+                  </div>
               </div>`);
+            
             });
         }
+ 
+        
+   
    
         return false;
     });
