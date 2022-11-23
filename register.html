@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#712cf9" />
     <title>Registration</title>
-
+    <link href="css/header.css" rel="stylesheet">
     <!-- css library-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <!--icons-->
@@ -15,10 +15,20 @@
 </head>
 
 <body class="text-center" data-new-gr-c-s-check-loaded="14.1085.0" data-gr-ext-installed="">
+    <div class="navigation-bar">
+        <ul class="menu">
+          <li>
+            <a href="index.html" id="events-option">
+              <i class="fa fa-list fa-2x"></i>
+              <span id="events-text">All Events</span>
+            </a>
+          </li>
+        </ul>
+      </div>
     <main class="w-100 m-auto">
         <section class="vh-100" style="background-color: #eee">
             <div class="container h-100">
-                <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-lg-12 col-xl-11">
                         <div class="card text-black" style="border-radius: 25px">
                             <div class="card-body p-md-5">
@@ -34,7 +44,7 @@
                                                     <input type="email" id="username" class="form-control"
                                                         name="username" placeholder="Your Email" required />
                                                     <div class="invalid-feedback username">
-                                                        The user has exits
+                                                       Please enter an email
                                                     </div>
                                                 </div>
                                             </div>

@@ -32,11 +32,16 @@ $(document).ready(function () {
     })
     .catch(function (err) { console.log('Error:', err) });
 
-
+    $("input").on("input",function(){
+        $(".alert").hide();
+    });
     $("form").submit(function(e){
+     
         var match = false;
         var username = $("#username").val();
         var password = $("#password").val();
+        var vName = document.getElementById("username");
+        var vPass = document.getElementById("password");
         var form = $("form");
         if($(form)[0].checkValidity() === true){
             for(var i =0;i<all_users.length;i++){
@@ -58,7 +63,7 @@ $(document).ready(function () {
             }
         }
         if(!match && username!="" && password!=""){
-             alert("Bad credentials. Please try again!");
+          $(".alert").show();
         }
         return false;
     });

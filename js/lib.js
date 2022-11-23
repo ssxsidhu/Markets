@@ -143,7 +143,7 @@ function isStatusBtn(status,id, year, month, date) {
       if (today.getFullYear() <= year &&
         today.getMonth() <= month &&
         today.getDate() < date) {
-           html= `<button class="btn btn-primary simple btn_cancel_event" id="cancel_` + id + `" >Cancel</button>`;
+           html= `<button class="btn btn-primary simple btn_cancel" data-bs-toggle="modal" data-bs-target="#cancelModal" id="cancel_` + id + `" >Cancel</button>`;
       }
   }
   return html;
@@ -200,7 +200,7 @@ function isStatus(appliable,status) {
 }
 
 function generateTermsModal(name, id, terms, username) {
-  return `<div class="modal fade" id="terms_` + id + `" tabindex="-1" aria-labelledby="terms_Label` + id + `" aria-hidden="true">
+  return `<div class="modal fade termsModal" id="terms_` + id + `" tabindex="-1" aria-labelledby="terms_Label` + id + `" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -225,7 +225,14 @@ function generateTermsModal(name, id, terms, username) {
         </div>
       </div>
     </div>
-  </div>`;
+  </div>
+  <script>
+  document.getElementById('terms_`+id+`').addEventListener('hidden.bs.modal', function () {
+    $("#terms_`+id+` .form-check-label").removeClass("hasError");
+});
+  </script>
+  
+  `;
 
 }
 
