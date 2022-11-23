@@ -6,10 +6,8 @@ $('body').on('click','.flex-row',function(){
 
     $(document).ready(function() {
         $(".features").css({
-          'min-width': ($(".container").width() + 'px')
+          'width': ($(".container").width() + 'px')
         });
-
-        console.log(window.location.href)
 
         if(window.location.href.includes('myApplications.html')){
             document.getElementById('my-app-option').style.color="darkcyan"

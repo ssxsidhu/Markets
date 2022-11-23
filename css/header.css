@@ -169,7 +169,7 @@
 
 .features-container .features{
   display: flex;
-  min-width: 700px;
+  width: 700px;
   flex-direction: row;
   align-items: center;
   justify-content:center;
