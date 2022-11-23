@@ -17,7 +17,8 @@ $(document).ready(function () {
         right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
       },
       initialDate: today,
-      editable: true,
+      editable: false,
+      disableDragging: false,
       navLinks: true, // can click day/week names to navigate views
       dayMaxEvents: true, // allow "more" link when too many events
       eventClick: function(info) {
