@@ -1,5 +1,9 @@
 
 $(document).ready(function () {
+    if(window.location.href.includes('myProfile.html')){
+        document.getElementById('my-profile-option').style.color="darkcyan"
+        document.getElementById('my-profile-text').style.color="darkcyan"
+    }
  
     var username = localStorage.getItem('username');
     var userId = localStorage.getItem('userId');
@@ -74,9 +78,28 @@ $(document).ready(function () {
    
 });
 
-$(document).ready(function() {
-    if(window.location.href.includes('myProfile.html')){
-        document.getElementById('my-profile-option').style.color="darkcyan"
-        document.getElementById('my-profile-text').style.color="darkcyan"
+
+
+
+function validatePhone() {
+    var emptyText ="Please enter a valid 10 digits phone number";
+    var constraints = {
+      "Canada": [/^\(?([0-9]{3})\)?[-. ●]?([0-9]{3})[-. ●]?([0-9]{4})$/, emptyText],
+      "Austria":[/[-+]?[ 0-9]*\.?[0-9]+$/,emptyText],
+      "United States":[/^[+]?(1\-|1\s|1|\d{3}\-|\d{3}\s|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/g,emptyText]
+    };
+    var country = "Canada";
+    var feedback = $(".phone");
+    var phone = document.getElementById("phone");
+    // Build the constraint checker
+    var constraint = new RegExp(constraints[country][0], "");
+    // Check it!
+    if (constraint.test(phone.value.trim())) {
+      phone.setCustomValidity("");
+    } else {
+  
+      // give a message about the format required for this country
+      phone.setCustomValidity(constraints[country][1]);
+      feedback.text(constraints[country][1]);
     }
-})
+  }

@@ -58,8 +58,8 @@
             </div>
             <div class="col-12">
               <label for="inputAddress2" class="form-label">Phone<span class="required">*</span></label>
-              <input type="number" class="form-control" id="phone" name="phone" required>
-              <div class="invalid-feedback">
+              <input type="number" class="form-control" id="phone" name="phone"oninput="validatePhone();" required>
+              <div class="invalid-feedback phone">
                 Please provide a phone number
              </div>
             </div>
