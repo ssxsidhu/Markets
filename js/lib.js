@@ -81,6 +81,9 @@ function generateView(ref, fee, date, month, year, start, end, pic, name, id, lo
     className = 'card flex-row open';
     flag = true;
   }
+  else if(!appliable){
+    className = 'card flex-row open';
+  }
   return `
     <div class='list flex-column event' id="event_` + id + `">
     <input type="hidden" id ="ref_` + id + `" value ="` + ref + `">
