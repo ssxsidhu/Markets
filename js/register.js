@@ -49,6 +49,43 @@ $(document).ready(function () {
         
     });
 
+    $("#password2").on('change', function(event) {
+        var value2 = $("#password2").val();
+        var value1 = $("#password").val();
+  
+        var password2 = document.getElementById("password2");
+        if(value2==""){
+            password2.setCustomValidity("Please re-enter your password");
+            $(".password2").text("Please re-enter your password");
+        }else{
+            if(value1 != value2){ 
+                password2.setCustomValidity("Password does not match");
+                $(".password2").text("Password does not match");
+            }else{
+                password2.setCustomValidity("");
+            }
+        }
+        
+    });
+
+    $("#password").bind('blur', function(event) {
+        var value1 = $("#password").val();
+        var password = document.getElementById("password");
+        $("#password2").val("");
+        if(value1==""){
+            password.setCustomValidity("Please enter your password");
+            $(".password").text("Please enter your password");
+        }else{
+            if(value1.length<8){ 
+                password.setCustomValidity("Password does not match");
+                $(".password").text("At least 8 characters");
+            }else{
+                password.setCustomValidity("");
+            }
+        }
+        
+    });
+
 
 
     //submit form
@@ -63,8 +100,13 @@ $(document).ready(function () {
                 { data: { username:username,password:password } },
                 )
             )
-            .then(function(ret) {console.log(ret)
-                window.location="login.html";
+            .then(function(ret) {
+                console.log(ret);
+                var ref = ret["ref"]["value"]["id"];
+                //auto login
+                localStorage.setItem("username",username);
+                localStorage.setItem("userId",ref);
+                 window.location="myprofile.html";
             });
         }
         

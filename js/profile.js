@@ -20,30 +20,18 @@ $(document).ready(function () {
         endpoint: 'https://db.us.fauna.com',
     })
     client.query([
-        q.Map(
-            q.Paginate(q.Documents(q.Collection('Users'))),
-            q.Lambda(x => q.Get(x))
-          )
+        q.Get(q.Ref(q.Collection('Users'), userId))
       ]).then(function (res) { 
         console.log('Result:', res);
-       
-        for(var i=0;i<res[0]["data"].length;i++){
-           var data =res[0]["data"][i]["data"];
-           var ref = res[0]["data"][i]["ref"]["value"]["id"];
-           data["ref"]=ref;
-           all_users.push(data);
-           if(data["username"]==username){
-              var json = JSON.parse(data["profile"]);
-              for(var i=0;i<json.length;i++){
-                $("#"+json[i]["name"]).val(json[i]["value"]);
-              }
-           }
-           
+        var data=res[0]["data"];
+        var json = JSON.parse(data["profile"]);
+        for(var i=0;i<json.length;i++){
+          $("#"+json[i]["name"]).val(json[i]["value"]);
         }
     })
     .catch(function (err) { console.log('Error:', err) });
 
-
+    console.log(all_users);
 
     $("form").submit(function(e){
         var profile = $("#profileForm").serializeArray();
@@ -58,17 +46,27 @@ $(document).ready(function () {
                 )
             ).then(function(ret) { console.log(ret)
                 $(".alert").remove();
-              $(".container").prepend(`<div class="alert alert-success" role="alert">
-                You have save the profile successfully.
+              $(".container").append(`<div class="alert alert-success" role="alert">
+              <div class="d-flex justify-content-center">
+               <p class="m-2"> You have save the profile successfully.</p> <a href="index.html" class="btn btn-sm btn-success m-2">Apply for events</a>
+                </div>
             </div>`);
+           
+            
             }).catch(function (err) { 
                 console.log('Error:', err);
                 $(".alert").remove();
-                $(".container").prepend(`<div class="alert alert-danger" role="alert">
+                $(".container").append(`<div class="alert alert-danger" role="alert">
+                <div class="d-flex justify-content-center">
                   Something went wrong... Please try again!
+                  </div>
               </div>`);
+            
             });
         }
+ 
+        
+   
    
         return false;
     });
