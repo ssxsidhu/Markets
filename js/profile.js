@@ -1,10 +1,6 @@
 
 $(document).ready(function () {
-    if(window.location.href.includes('myProfile.html')){
-        document.getElementById('my-profile-option').style.color="darkcyan"
-        document.getElementById('my-profile-text').style.color="darkcyan"
-    }
- 
+
     var username = localStorage.getItem('username');
     var userId = localStorage.getItem('userId');
     $("#username").html(username);
@@ -77,6 +73,12 @@ $(document).ready(function () {
 
    
 });
+
+$(document).ready(function () {
+  if(window.location.href.includes('myProfile.html')){
+      document.getElementById('my-profile-option').style.color="darkcyan"
+      document.getElementById('my-profile-text').style.color="darkcyan"
+  }});
 
 
 
