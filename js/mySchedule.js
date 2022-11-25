@@ -6,6 +6,10 @@ $(document).ready(function () {
     var yyyy = today.getFullYear();
 
     today = yyyy + '-' + mm + '-' + dd;
+    if(localStorage.getItem("jump")){
+      today = localStorage.getItem("date");
+      localStorage.removeItem("jump");
+    }
 
     var calendarEl = document.getElementById('calendar');
 

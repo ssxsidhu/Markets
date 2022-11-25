@@ -262,6 +262,7 @@ function getEventById(id) {
   var name = $("#event_" + id + " .title").text();
   var pic = $("#event_" + id + " img").attr("src");
   var status = "Approved";
+  var dateTime = year+"-"+monthsShort[month]+"-"+date;
   return {
     "id": id,
     "fee": fee,
@@ -274,7 +275,8 @@ function getEventById(id) {
     "description": description,
     "pic": pic,
     "name": name,
-    "status": status
+    "status": status,
+    "dateTime":dateTime
   };
 
 }

@@ -125,6 +125,9 @@ $(document).ready(function () {
             id = id.replace("pay_", "ref_");
             var ref = $("#" + id).val();
             localStorage.setItem("id", ref);
+            id=id.replace("ref_","");
+            var obj =getEventById(id);
+            localStorage.setItem("date",obj["dateTime"]);
             location.replace("payment.html")
         });
 
@@ -159,6 +162,12 @@ $(document).ready(function () {
             });
 
 
+        });
+
+
+        $(document).on("click", ".viewSchedule", function(){
+               localStorage.setItem("jump",true);
+               window.location.href="mySchedule.html";
         });
 
     } else {
