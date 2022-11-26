@@ -112,6 +112,8 @@ $(document).ready(function () {
         }
 
     });
+
+
    
 
 });
@@ -119,12 +121,11 @@ $(document).ready(function () {
 
 
 
+document.getElementById('successfulMsg').addEventListener('hidden.bs.modal', function () {
+    window.location.reload();
+});
 
 
-
-
-
-    //on submit
 
 
 function readEvents(client,q,user_events,username,profile,sort_events){

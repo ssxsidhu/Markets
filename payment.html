@@ -98,11 +98,11 @@
               </div>
             </div>
 
-            <div class="col-3">
-              <div class="d-flex flex-column">
-                <label for="validationCustom03" class="form-label"
-                  >Expiration Date</label
-                >
+            <div class="col-6">
+              <label for="validationCustom03" class="form-label"
+              >Expiration Date</label>
+              <div class="d-flex flex-row">
+            
                 <!-- <input
                   type="text"
                   placeholder="MM/YYYY"
@@ -110,10 +110,8 @@
                   id="validationCustom03"
                   required
                 /> -->
-                <select class="form-control mb-3" required>
-                  <option class="placeholder" value="" selected disabled>
-                    Select Month
-                  </option>
+                <select id="selectedMonth" class="form-control" onchange="isValidDate(this)" required>
+                  <option value="" selected disabled>Select Month</option>
                   <option value="01">January</option>
                   <option value="02">February</option>
                   <option value="03">March</option>
@@ -127,23 +125,8 @@
                   <option value="11">November</option>
                   <option value="12">December</option>
                 </select>
-                <!-- <div class="invalid-feedback">
-                  Please provide a valid expiration date.
-                </div> -->
-              </div>
-            </div>
 
-            <div class="col-3" style="padding-top: 33px; position: static">
-              <div class="d-flex flex-column">
-                <!-- <label for="validationCustom03" class="form-label">Year</label> -->
-                <!-- <input
-                  type="text"
-                  placeholder="MM/YYYY"
-                  class="form-control mb-3"
-                  id="validationCustom03"
-                  required
-                /> -->
-                <select class="form-control" required>
+                <select id="selectedYear" class="form-control" onchange="isValidDate(this)" required>
                   <option value="" selected disabled>Select Year</option>
                   <option value="2022">2022</option>
                   <option value="2023">2023</option>
@@ -153,12 +136,10 @@
                   <option value="2027">2027</option>
                   <option value="2028">2028</option>
                 </select>
-                <!-- <div class="invalid-feedback">
-                  Please provide a valid expiration date.
-                </div> -->
               </div>
-            </div>
+              <p id="errmsg"></p>
 
+            </div>
             <div class="col-6">
               <div class="d-flex flex-column">
                 <label for="validationCustom04" class="form-label"

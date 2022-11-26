@@ -1,59 +1,3 @@
-// // function payment(){
-// //     location.replace("myApplications.html")
-// // }
-
-// // Example starter JavaScript for disabling form submissions if there are invalid fields
-// (function () {
-//   'use strict'
-
-//   // Fetch all the forms we want to apply custom Bootstrap validation styles to
-//   var forms = document.querySelectorAll('.needs-validation')
-
-//   // Loop over them and prevent submission
-//   Array.prototype.slice.call(forms).forEach(function (form) {
-//       form.addEventListener('submit', function (event) {
-//         if (!form.checkValidity()) {
-//           event.preventDefault()
-//           event.stopPropagation()
-//         }
-//         $('#myForm').on('submit', function(event){
-//           event.preventDefault();
-//           $('#myModal').modal('show');
-          
-//         });
-//         form.classList.add('was-validated')
-//       }, false)
-//     })
-// })()
-
-
-// // function payment(){
-// //     location.replace("myApplications.html")
-// // }
-
-// // Example starter JavaScript for disabling form submissions if there are invalid fields
-// (function () {
-//   'use strict'
-
-//   // Fetch all the forms we want to apply custom Bootstrap validation styles to
-//   var forms = document.querySelectorAll('.needs-validation')
-
-//   // Loop over them and prevent submission
-//   Array.prototype.slice.call(forms).forEach(function (form) {
-//       form.addEventListener('submit', function (event) {
-//         if (!form.checkValidity()) {
-//           event.preventDefault()
-//           event.stopPropagation()
-//         }
-//         $('#myForm').on('submit', function(event){
-//           event.preventDefault();
-//           $('#myModal').modal('show');
-          
-//         });
-//         form.classList.add('was-validated')
-//       }, false)
-//     })
-// })()
 
 function isNumberKey(evt){
     var charCode = (evt.which) ? evt.which : evt.keyCode
@@ -68,4 +12,34 @@ $('#validationCustomUsername').on('keypress change', function() {
     });
   });
 
+  function isValidDate(){
 
+    var today, someday;
+    var exMonth=document.getElementById('selectedMonth');
+    console.log('MONTH:', exMonth.value);
+    var exYear=document.getElementById('selectedYear');
+    console.log('YEAR:', exYear.value);
+
+    today = new Date();
+    someday = new Date();
+    someday.setFullYear(exYear.value, exMonth.value - 1, someday.getDate());
+
+    if (someday < today) {
+      document.getElementById("errmsg").innerHTML = "Please select a valid expiry date";
+      return false;
+    } else {
+      document.getElementById("errmsg").innerHTML = "";
+      return true;
+    }
+
+    // document.getElementById("errmsg") = "You selected: " + x;
+    // today = new Date();
+    // someday = new Date();
+    // someday.setFullYear(exYear, exMonth, 1);
+    
+    // if (someday < today) {
+    //   alert("The expiry date is before today's date. Please select a valid expiry date");
+    //   return false;
+    // }
+  
+  }
