@@ -60,14 +60,14 @@ p {
     align-items: left;
     justify-content: center;
     padding: 0 15px;
-    background-color:#198754;
+    background-color:#1ea94b;
     border: none;
     /* transition: 0.5s; */
     /* background-size: 200% auto; */
 
 }
 .btn-success{
-    background-color:#198754 !important;
+    background-color:#1ea94b !important;
 }
 
 .btn.btn-primary {
@@ -85,9 +85,8 @@ p {
 
 }
 
-
 .btn.btn.btn-primary.submit:hover {
-    background-color:rgb(113, 200, 113);
+    background-color:#029330;
     transition: 0.5s;
 
     /* background-position: right center; */
@@ -96,7 +95,7 @@ p {
 }
 
 .btn.btn.btn-primary.cancel:hover {
-    background-color: rgb(223, 120, 120);
+    background-color:rgb(220, 29, 29);
     transition: 0.5s;
 
     /* background-position: right center; */
@@ -138,4 +137,9 @@ p {
 ::placeholder {
     font-size: 14px;
     font-weight: 600;
+}
+
+#errmsg{
+    color: red;
+    font-size: 15px;
 }
