@@ -191,3 +191,19 @@
 .terms .hasError, .required{
    color: red;
   }
+
+.moredetails, .lessdetails{
+    color: khaki;
+}
+
+.moredetails{
+    font-size: small;
+}
+
+.moredetails:hover, .lessdetails:hover{
+    text-decoration: underline;
+ }
+
+ .moredetails.hidden{
+    display: none;
+ }

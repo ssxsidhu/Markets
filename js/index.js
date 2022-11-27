@@ -160,9 +160,21 @@ function readEvents(client,q,user_events,username,profile,sort_events){
 }
 
 
-
-$('body').on('click','.flex-row',function(){
-    if($('.flex-row').hasClass('open'))
-        $('.flex-row.open').toggleClass('open');
-    $(this).toggleClass('open');
+$('body').on('click','.flex-column .info .moredetails',function(){
+    self = $(this).parent();
+    superSelf = self.parent();
+    superSelf.toggleClass('open')
+    $(this).toggleClass('hidden');
 });
+
+
+$('body').on('click','.flex-column .info .bottom .lessdetails',function(){
+    self = ($(this).parent()).parent();
+    superSelf = self.parent();
+    superSelf.toggleClass('open')
+    console.log(self)
+    $(self.children(2)).toggleClass('hidden');
+});
+
+
+

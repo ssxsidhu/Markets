@@ -74,32 +74,32 @@ const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep
 
 //for generating list view
 var flag;
-
+var hide;
 function generateView(ref, fee, date, month, year, start, end, pic, name, id, location, description, username, found = false, appliable = true, profile = 'false', status = '') {
   className = 'card flex-row';
-  if (id == 1 && !flag && appliable) {
+  moreDetails = '<div class="moredetails"><br/><br/><br/><span>More details</span></div>';
+  lessDetails = '<br/><br/><div class="lessdetails">Less Details</div>';
+  if(!appliable){
     className = 'card flex-row open';
-    flag = true;
-  }
-  else if(!appliable){
-    className = 'card flex-row open';
+    description = isAppliable(appliable, id, username, found, profile)+isStatusBtn(status,id, year, month, date);
+    hide = 'display:none'
+    moreDetails=''
+    lessDetails=''
   }
   return `
     <div class='list flex-column event' id="event_` + id + `">
     <input type="hidden" id ="ref_` + id + `" value ="` + ref + `">
-
     <div class='` + className + `'>
         <img src='` + pic + `' class='eventPhoto-no-descr'>
         <div class='flex-column info'>
           <div class='title'>` + name + `</div>
           <div class='location'>` + location + `</div>
-          ` + isFound(found) + isStatus(appliable,status) + `
+          ` + isFound(found) + isStatus(appliable,status) + moreDetails +`
           <div class='hidden bottom'>
               <div class="event-time">Time: <span class="start">` + start + `</span> - <span class="end">` + end + `</span></div>
               <div class="event-fee">Table Fee: <span class="fee">` + fee + `</span></div>
-             
-              <br/><span class="summary">
-          ` + description + `</span>
+              <br/><span class="summary">` + description + `</span>
+              `+lessDetails+`
           </div>
         </div>
         <div class='flex-column group'>
@@ -108,7 +108,7 @@ function generateView(ref, fee, date, month, year, start, end, pic, name, id, lo
             <div class="month">` + monthNames[month - 1] + `</div>
             <div class="year">` + year + `</div>
           </div>
-          <div class='hidden bottom'>
+          <div class='hidden bottom' style=`+hide+`>
               ` + isAppliable(appliable, id, username, found, profile) + `
               `+isStatusBtn(status,id, year, month, date)+`
           </div>
@@ -117,8 +117,6 @@ function generateView(ref, fee, date, month, year, start, end, pic, name, id, lo
       </div>
     `
 }
-
-
 
 function isAppliable(appliable, id, username, found, profile) {
 
@@ -143,10 +141,9 @@ function isStatusBtn(status,id, year, month, date) {
     html= `<button class="btn btn-primary simple btn_pay_now" id="pay_`+id+`" >Pay Now</button>`;
   }else if (status == "Accepted"){
       const today = new Date();
-      if (today.getFullYear() <= year &&
-        today.getMonth() <= month &&
-        today.getDate() < date) {
-           html= `<button class="btn btn-primary simple btn_cancel" data-bs-toggle="modal" data-bs-target="#cancelModal" id="cancel_` + id + `" >Cancel</button>`;
+      const eventDate = new Date(year, month-1, date);
+      if (today < eventDate) {
+           html= `<button class="btn btn-primary simple btn_cancel" data-bs-toggle="modal" data-bs-target="#cancelModal" id="cancel_` + id + `" style='background-color:firebrick'>Cancel</button>`;
       }
   }
   return html;
