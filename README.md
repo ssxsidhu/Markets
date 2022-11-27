@@ -15,3 +15,8 @@ Main selling point of the website is that is allows the user to create a profile
         - Password: 12345678
     2. Create a new user profile
 - After applying and paying for an event, that event will appear in the user's schedule (calendar). If the event is far in the future, the user will have to manually go that date in the calendar. The date of an event that the user has applied for can be found by clicking on the respective in event in the "Applications" page.
+
+
+## Additional Notes
+
+- Error checking for expiration date of payment card when paying for an event has only been partially implemented. When an invalid date is entered, a message appears, however, it does not stop the user from submitting payment.
