@@ -40,8 +40,8 @@ $(document).ready(function () {
             $(".username").text("Please enter a email");
         }else{
             if(found){ 
-                name.setCustomValidity("The user has exits");
-                $(".username").text("The user has exits");
+                name.setCustomValidity("This user already exits");
+                $(".username").text("This user already exits");
             }else{
                 name.setCustomValidity("");
             }
