@@ -213,7 +213,7 @@ function generateTermsModal(name, id, terms, username) {
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault` + id + `" required>
                 <label class="form-check-label" for="flexCheckDefault` + id + `">
-                    I have read the terms and condition
+                    I have read the terms and conditions
                 </label>
             </div>
            

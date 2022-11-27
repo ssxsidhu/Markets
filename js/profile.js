@@ -48,7 +48,7 @@ $(document).ready(function () {
                 $(".alert").remove();
               $(".container").append(`<div class="alert alert-success" role="alert">
               <div class="d-flex justify-content-center">
-               <p class="m-2"> You have save the profile successfully.</p> <a href="index.html" class="btn btn-sm btn-success m-2">Apply for events</a>
+               <p class="m-2"> You have saved the profile successfully.</p> <a href="index.html" class="btn btn-sm btn-success m-2">Apply for events</a>
                 </div>
             </div>`);
            
