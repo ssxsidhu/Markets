@@ -70,11 +70,11 @@ $(document).ready(function () {
                 unselected[0]='Latest';
                 unselected[1]='Oldest';
             } else if (sort == "Latest") {
-                sort_events.sort((a, b) => a.time - b.time);
+                sort_events.sort((a, b) => b.time - a.time);
                 unselected[0]='A-Z';
                 unselected[1]='Oldest';
             } else if (sort == "Oldest") {
-                sort_events.sort((a, b) => b.time - a.time);
+                sort_events.sort((a, b) => a.time - b.time);
                 unselected[0]='A-Z';
                 unselected[1]='Latest';
             }
