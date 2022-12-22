@@ -106,7 +106,7 @@ $(document).ready(function () {
                 //auto login
                 localStorage.setItem("username",username);
                 localStorage.setItem("userId",ref);
-                 window.location="myprofile.html";
+                 window.location="myProfile.html";
             });
         }
         
